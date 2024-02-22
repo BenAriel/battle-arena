@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jogador {
+    private double energia;
     private String nick;
     private int vida;
     private List<Personagem> personagens;
@@ -13,6 +14,9 @@ public class Jogador {
         setVida(vida);
         setPersonagens(personagens);
         setPersonagemUsado(personagemUsado);
+    }
+    public double getEnergia() {
+        return energia;
     }
     public int getVida() {
         return vida;
@@ -30,6 +34,9 @@ public class Jogador {
         if(!nick.isEmpty() && nick.length() > 3) {
             this.nick = nick;
         }
+    }
+    public void setEnergia(double energia) {
+        this.energia = energia;
     }
     public void setVida(int vida) {
         this.vida = 100;
