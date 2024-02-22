@@ -6,6 +6,11 @@ public class EscudoTemporario extends Tipo {
     private int defesa;
     private int countdown;
 
+    public EscudoTemporario(int defesa, int countdown) {
+        this.defesa = defesa;
+        this.countdown = countdown;
+    }
+
     public int getDefesa() {
         return defesa;
     }

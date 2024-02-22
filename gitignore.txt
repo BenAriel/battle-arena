@@ -1,0 +1,13 @@
+# Ignore arquivos de configuração do Visual Studio Code
+.vscode/
+
+# Ignore arquivos de configuração do Eclipse
+.settings/
+bin/
+*.class
+
+# Ignore arquivos de configuração do IntelliJ IDEA
+.idea/
+
+# Ignore arquivos JAR no diretório de bibliotecas
+lib/*.jar

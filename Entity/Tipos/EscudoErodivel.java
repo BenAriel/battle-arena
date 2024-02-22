@@ -5,6 +5,10 @@ import Entity.Tipo;
 public class EscudoErodivel extends Tipo {
     private int defesa;
 
+    public EscudoErodivel(int defesa) {
+        this.defesa = defesa;
+    }
+
     public int getDefesa() {
         return defesa;
     }
