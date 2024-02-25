@@ -1,6 +1,7 @@
 package Entity;
 
 public class Personagem {
+    private int id;
     private String nome;
     private String descricao;
     private int vida;
@@ -14,6 +15,14 @@ public class Personagem {
         this.descricao = descricao;
         this.vida = vida;
         this.habilidades = habilidades;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

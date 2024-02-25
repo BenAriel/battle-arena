@@ -8,9 +8,10 @@ public class DanoPorTurno extends Tipo {
     private String tipo; // normal ou perfurante
     private int turnos;
 
-    public DanoPorTurno(int dano, String tipo) {
+    public DanoPorTurno(int dano, String tipo, int turnos) {
         this.dano = dano;
         this.tipo = tipo;
+        this.turnos = turnos;
     }
 
     public int getDano() {
