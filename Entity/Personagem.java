@@ -111,6 +111,27 @@ public class Personagem {
         return vivos;
     }
 
+    public void dano(int dano) {
+        if (defended > dano) {
+            defended -= dano;
+        }
+        else if (defended > 0) {
+            dano -= defended;
+            vida -= dano;
+        }
+        else {
+            vida -= dano;
+        }
+
+        if (vida < 0) {
+            vida = 0;
+        }
+    }
+
+    public void defender(int defesa) {
+        defended += defesa;
+    }
+
     public void curar(int cura) {
         vida += cura;
 

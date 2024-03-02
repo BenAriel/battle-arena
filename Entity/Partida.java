@@ -2,9 +2,11 @@ package Entity;
 
 import java.time.Duration;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Partida {
     private Jogador [] jogadores = new Jogador[2];
+    private ArrayList<HabilidadePendente> habilidadesPendentes = new ArrayList<>();
     private int vencedor; //0 para nenhum,1 para jogador 1, 2 para jogador 2
     private Duration tempoPorTurno;
     private int turnos;
@@ -27,6 +29,14 @@ public class Partida {
 
     public void setJogadores(Jogador[] jogadores) {
         this.jogadores = jogadores;
+    }
+
+    public ArrayList<HabilidadePendente> getHabilidadesPendentes() {
+        return habilidadesPendentes;
+    }
+
+    public void setHabilidadesPendentes(ArrayList<HabilidadePendente> habilidadesPendentes) {
+        this.habilidadesPendentes = habilidadesPendentes;
     }
 
     public int getVencedor() {
@@ -87,27 +97,59 @@ public class Partida {
                             if (receptoresDisponiveis[i][j]) {
                                 Personagem personagemReceptor = jogadores[i].getPersonagens().get(j);
                                 System.out.println(j+") "+personagemReceptor.getNome()+" ("+personagemReceptor.getVida()+")");
-
-                                
                             }
                         }
                     }
+
+                    // adicição de habilidade a controlador
                     int escolhaAlvo = scanner.nextInt();
                     if (escolhaAlvo >= 0 && escolhaAlvo < 3 && (receptoresDisponiveis[0][escolhaAlvo] || receptoresDisponiveis[1][escolhaAlvo])) {
-                        Jogador[] recepJogadores = jogadores[idJogador].utilizarHabilidade(jogadores[idJogador], jogadores[idAdversario], escolhaPersonagem, escolhaHabilidade, escolhaAlvo);
+                        boolean unicaHabilidadePersonagemTurno = true;
+                        for (int i = 0; i < habilidadesPendentes.size(); i++) {
+                            if (habilidadesPendentes.get(i).getIdPersonagem() == escolhaPersonagem) {
+                                unicaHabilidadePersonagemTurno = false;
+                            }
+                        }
+
+                        if (unicaHabilidadePersonagemTurno) {
+                            int[] energiasJogador = jogadores[idJogador].getEnergia();
+                            int custoHabilidadeAtual = personagem.getHabilidades()[escolhaHabilidade].getEnergia();
+                            int[] custoCalculadoPorEnergia = jogadores[idJogador].calcularCustoEnergia(custoHabilidadeAtual, energiasJogador[escolhaPersonagem]);
+
+                            habilidadesPendentes.add(new HabilidadePendente(escolhaPersonagem, escolhaHabilidade, escolhaAlvo, custoCalculadoPorEnergia[0], custoCalculadoPorEnergia[1]));
                         
-                        jogadores[idJogador] = recepJogadores[0];
-                        jogadores[idAdversario] = recepJogadores[1];
+                            // remove "provisoriamente" as energias, até a habilidade, possivelmente, ser cancelada
+                            jogadores[idJogador].removerEnergias(escolhaPersonagem, custoCalculadoPorEnergia[0]);
+                            jogadores[idJogador].removerEnergias(3, custoCalculadoPorEnergia[1]);
+                        }
                     }
-
-
                 }
+        }
+    }
 
+    public void habilidadePendentes() {
+        if (habilidadesPendentes.size() > 0) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("---");
+    
+            for (int i = 0; i < habilidadesPendentes.size(); i++) {
+                System.out.println(i+") "+habilidadesPendentes.get(i));
+            }
+            System.out.println("Outro) Voltar");
+            int escolha = scanner.nextInt();
+
+            if (escolha < habilidadesPendentes.size()) {
+                int idPersonagem = habilidadesPendentes.get(escolha).getIdPersonagem();
+                int custoPrincipal = habilidadesPendentes.get(escolha).getEnergiasPrincipais();
+                int custoPreto = habilidadesPendentes.get(escolha).getEnergiasPretas();
+
+                habilidadesPendentes.remove(escolha);
+
+                jogadores[idJogador].adicionarEnergias(idPersonagem, custoPrincipal);
+                jogadores[idJogador].adicionarEnergias(3, custoPreto);
+            }
 
         }
-
-
-        //jogadores[idJogador].verificarHabilidade(idPersonagem, idHabilidade, jogB.getPersonagens());
     }
 
     public void passarTurno() {
@@ -120,37 +162,50 @@ public class Partida {
     public void turno() {
         Scanner scanner = new Scanner (System.in);
 
-        jogadores[idJogador].getPersonagens().get(0).setVida(0);
-        jogadores[idJogador].getPersonagens().get(1).setVida(12);
-        jogadores[idJogador].getPersonagens().get(2).setVida(90);
-
-        jogadores[idAdversario].getPersonagens().get(0).setVida(20);
-        jogadores[idAdversario].getPersonagens().get(1).setVida(0);
-        jogadores[idAdversario].getPersonagens().get(2).setVida(40);
-
-        jogadores[idJogador].meuTurno();
-        jogadores[idJogador].meuTurno();
-        jogadores[idJogador].meuTurno();
-        jogadores[idJogador].meuTurno();
-        jogadores[idJogador].meuTurno();
         jogadores[idJogador].meuTurno();
 
-        jogadores[idJogador].meuTurno(); // lógica de iniciar turno do jogador
-
-        int[] copiaEnergias = jogadores[idJogador].getEnergia();
         int escolha = 0;
         
-        while (escolha != 1) {
+        while (escolha != -1) {
             System.out.println(jogadores[idJogador]);
             System.out.println("---");
             jogadores[idAdversario].exibirPersonagensSemEnergia();
             System.out.println("---");
 
-            System.out.println("1. Passar Turno | 2. Utilizar Habilidade");
+            System.out.println("1. Passar Turno | 2. Utilizar Habilidade | 3. Habilidade Pendentes");
             escolha = scanner.nextInt();
+
+            if (escolha == 1) {
+                System.out.println("---");
+                while (habilidadesPendentes.size() > 0) {
+                    int idPersonagem = habilidadesPendentes.get(0).getIdPersonagem();
+                    int idHabilidade = habilidadesPendentes.get(0).getIdHabilidade();
+                    int idAlvo = habilidadesPendentes.get(0).getIdPersonagemAlvo();
+
+                    Jogador[] recepJogadores = jogadores[idJogador].utilizarHabilidade(jogadores[idJogador], jogadores[idAdversario], idPersonagem, idHabilidade, idAlvo);
+                    jogadores[idJogador] = recepJogadores[0];
+                    jogadores[idAdversario] = recepJogadores[1];
+
+                    habilidadesPendentes.remove(0);
+                }
+                escolha = 0;
+                scanner.nextLine();
+                scanner.nextLine();
+
+                jogadores[idJogador].passarTurno();
+                jogadores[idAdversario].meuTurno();
+                int idAux = idJogador;
+                idJogador = idAdversario;
+                idAdversario = idAux;
+
+            }
 
             if (escolha == 2) {
                 utilizarHabilidade();
+                escolha = 0;
+            }
+            else if (escolha == 3) {
+                habilidadePendentes();
                 escolha = 0;
             }
         }

@@ -14,6 +14,14 @@ public class Aleatory<T> {
     public int randrange(int num1, int num2) {
         return rand.nextInt(num2 - num1) + num1;
     }
+
+    public boolean chance(int percentage) {
+        int num = randrange(1, 101);
+        if (num <= percentage) {
+            return true;
+        }
+        return false;
+    }
     
     public T[] shuffle(T[] lista) {
         for (int i = 0; i < lista.length; i++) {

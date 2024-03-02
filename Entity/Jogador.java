@@ -41,6 +41,14 @@ public class Jogador {
         this.energias = energias;
     }
 
+    public void adicionarEnergias(int index, int valor) {
+        this.energias[index] += valor;
+    }
+
+    public void removerEnergias(int index, int valor) {
+        this.energias[index] -= valor;
+    }
+
     public boolean[] obterVivos() {
         boolean[] vivos = new boolean[personagens.size()];
 
@@ -71,15 +79,19 @@ public class Jogador {
         return vivos;
     }
 
-    public void custoEnergia(int custo, int idPersonagem) {
-        if (custo <= energias[idPersonagem]) {
-            energias[idPersonagem] -= custo;
+    public int[] calcularCustoEnergia(int custo, int energiasPersonagem) {
+        int[] energiasGastas = new int[2];
+
+        if (custo <= energiasPersonagem) {
+            energiasGastas[0] = custo;
         }
         else {
-            custo -= energias[idPersonagem];
-            energias[idPersonagem] = 0;
-            energias[3] -= custo;
+            energiasGastas[0] = energiasPersonagem;
+            custo -= energiasPersonagem;
+            energiasGastas[1] = custo;
         }
+
+        return energiasGastas;
     }
 
     public boolean[][] verificarHabilidade(int idPersonagem, int idHabilidade, List<Personagem> personagensAdversario) {
@@ -92,9 +104,6 @@ public class Jogador {
 
     public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idPersonagem, int idHabilidade, int idPersonagemAlvo) {
         Personagem personagem = jogador.getPersonagens().get(idPersonagem);
-        
-        int custoEnergia = personagem.getHabilidades()[idHabilidade].getEnergia();
-        jogador.custoEnergia(custoEnergia, idPersonagem);
 
         return personagem.utilizarHabilidade(jogador, alvo, idHabilidade, idPersonagemAlvo);
     }

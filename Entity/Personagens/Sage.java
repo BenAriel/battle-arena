@@ -3,6 +3,7 @@ package Entity.Personagens;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
+import Resources.Aleatory;
 
 public class Sage extends Personagem {
     public Sage() {
@@ -59,9 +60,36 @@ public class Sage extends Personagem {
     }
 
     public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagemAlvo) {
+        Aleatory<Integer> random = new Aleatory<>();
+        String nomeJogador = jogador.getNick();
+        String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
+
+        System.out.println("Sage ("+nomeJogador+") utilizou "+nomeHabilidade+".");
+
         if (idHabilidade == 0) {
             jogador.getPersonagens().get(idPersonagemAlvo).curar(25);
         }
+
+        else if (idHabilidade == 1) {
+            for (int i = 0; i < 3; i++) {
+                if (alvo.getPersonagens().get(i).getVida() > 0 && random.chance(50)) { // se o personagem estiver vivo, executa em 50% dos casos
+                    alvo.getPersonagens().get(i).dano(15);
+                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou dano e foi stunado(a).");
+                }
+            }
+        }
+
+        else if (idHabilidade == 2) {
+            jogador.getPersonagens().get(idPersonagemAlvo).defender(8);
+            System.out.println("- "+jogador.getPersonagens().get(idPersonagemAlvo).getNome()+" ficará invulnerável por 1 turno.");
+            for (int i = 0; i < 3; i++) {
+                if (jogador.getPersonagens().get(i).getVida() > 0 && i != idPersonagemAlvo && random.chance(10)) { // chance de 10$ em aliados
+                    jogador.getPersonagens().get(i).defender(8);
+                    System.out.println("- "+jogador.getPersonagens().get(i).getNome()+" ficará invulnerável por 1 turno.");
+                }
+            }
+        }
+
         else if (idHabilidade == 3) {
             jogador.getPersonagens().get(idPersonagemAlvo).ressuscitar(40);
         }
