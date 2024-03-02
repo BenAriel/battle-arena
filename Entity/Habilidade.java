@@ -4,17 +4,13 @@ public class Habilidade {
     private String nome;
     private String descricao;
     private int energia;
-    private int energiaPreta;
     private int countdown;
-    private Tipo[] tipos;
 
-    public Habilidade(String nome, String descricao, int energia, int energiaPreta, int countdown, Tipo[] tipos) {
+    public Habilidade(String nome, String descricao, int energia, int countdown) {
         this.nome = nome;
         this.descricao = descricao;
         this.energia = energia;
-        this.energiaPreta = energiaPreta;
         this.countdown = countdown;
-        this.tipos = tipos;
     }
 
     public String getNome() {
@@ -41,14 +37,6 @@ public class Habilidade {
         this.energia = energia;
     }
 
-    public int getEnergiaPreta() {
-        return energiaPreta;
-    }
-
-    public void setEnergiaPreta(int energiaPreta) {
-        this.energiaPreta = energiaPreta;
-    }
-
     public int getCountdown() {
         return countdown;
     }
@@ -56,14 +44,4 @@ public class Habilidade {
     public void setCountdown(int countdown) {
         this.countdown = countdown;
     }
-
-    public Tipo[] getTipos() {
-        return tipos;
-    }
-
-    public void setTipos(Tipo[] tipos) {
-        this.tipos = tipos;
-    }
-
-    
 }
