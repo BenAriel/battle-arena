@@ -75,7 +75,7 @@ public class Partida {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("---");
-        boolean[] personagensDisponiveis = jogadores[idJogador].exibirPersonagensVivos();
+        boolean[] personagensDisponiveis = jogadores[idJogador].exibirPersonagensVivosNaoStunnados();
         int escolhaPersonagem = scanner.nextInt();
         System.out.println("---");
 
@@ -197,6 +197,7 @@ public class Partida {
                 int idAux = idJogador;
                 idJogador = idAdversario;
                 idAdversario = idAux;
+                System.out.println("==========\n\n\n\n\n");
 
             }
 

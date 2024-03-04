@@ -39,12 +39,13 @@ public class Sage extends Personagem {
         return habilidades;
     }
 
-    public boolean[][] verificarHabilidade(boolean[][] vivos, int idPersonagem, int idHabilidade) {
+    public boolean[][] verificarHabilidade(boolean[][] vivos, boolean[] invulneraveis, int idPersonagem, int idHabilidade) {
         if (idHabilidade == 0) {
             vivos = bloquearInimigos(vivos);
         }
         else if (idHabilidade == 1) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 2) {
             vivos = bloquearInimigos(vivos);
@@ -59,7 +60,7 @@ public class Sage extends Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagemAlvo) {
+    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
         Aleatory<Integer> random = new Aleatory<>();
         String nomeJogador = jogador.getNick();
         String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
@@ -72,19 +73,20 @@ public class Sage extends Personagem {
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && random.chance(50)) { // se o personagem estiver vivo, executa em 50% dos casos
+                if (alvo.getPersonagens().get(i).getVida() > 0 &&alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(50)) { // se o personagem estiver vivo, executa em 50% dos casos
                     alvo.getPersonagens().get(i).dano(15);
+                    alvo.getPersonagens().get(i).stunnar(1);
                     System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou dano e foi stunado(a).");
                 }
             }
         }
 
         else if (idHabilidade == 2) {
-            jogador.getPersonagens().get(idPersonagemAlvo).defender(8);
+            jogador.getPersonagens().get(idPersonagemAlvo).ficarInvulneravel(1);
             System.out.println("- "+jogador.getPersonagens().get(idPersonagemAlvo).getNome()+" ficará invulnerável por 1 turno.");
             for (int i = 0; i < 3; i++) {
                 if (jogador.getPersonagens().get(i).getVida() > 0 && i != idPersonagemAlvo && random.chance(10)) { // chance de 10$ em aliados
-                    jogador.getPersonagens().get(i).defender(8);
+                    jogador.getPersonagens().get(i).ficarInvulneravel(1);
                     System.out.println("- "+jogador.getPersonagens().get(i).getNome()+" ficará invulnerável por 1 turno.");
                 }
             }

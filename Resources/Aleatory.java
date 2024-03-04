@@ -1,5 +1,6 @@
 package Resources;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Aleatory<T> {
@@ -33,6 +34,11 @@ public class Aleatory<T> {
         }
         
         return lista;
+    }
+
+    public T choice(T[] lista) {
+        lista = shuffle(lista);
+        return lista[0];
     }
     
 }

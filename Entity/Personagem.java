@@ -10,7 +10,8 @@ public class Personagem {
     private ArrayList<Habilidade> habilidadesAtivas = new ArrayList<>();
     private ArrayList<Habilidade> habilidadesAtivasInimigo = new ArrayList<>();
     private int stunned;
-    private int defended;
+    private int invulneravel;
+    private int defesa;
 
     public Personagem(String nome, String descricao, int vida, Habilidade[] habilidades) {
         this.nome = nome;
@@ -74,13 +75,21 @@ public class Personagem {
     public void setStunned(int stunned) {
         this.stunned = stunned;
     }
-    
-    public int getDefended() {
-        return defended;
+
+    public int getInvulneravel() {
+        return invulneravel;
     }
 
-    public void setDefended(int defended) {
-        this.defended = defended;
+    public void setInvulneravel(int invulneravel) {
+        this.invulneravel = invulneravel;
+    }
+    
+    public int getDefesa() {
+        return defesa;
+    }
+
+    public void setDefesa(int defesa) {
+        this.defesa = defesa;
     }
     
     public boolean[][] bloquearAliados(boolean[][] personagens) {
@@ -105,23 +114,58 @@ public class Personagem {
 
         return personagens;
     }
+    
+    public boolean[][] bloquearInvulneraveis(boolean[][] personagens, boolean[] invulneraveis) {
+        for (int i = 0; i < personagens[1].length; i++) {
+            if (invulneraveis[i]) {
+                personagens[1][i] = false;
+            }
+        }
+
+        return personagens;
+    }
 
     public boolean[][] permitirUsuario(boolean[][] vivos, int idPersonagem) {
         vivos[0][idPersonagem] = true;
         return vivos;
     }
 
-    public void dano(int dano) {
-        if (defended > dano) {
-            defended -= dano;
+    public void ficarInvulneravel(int turnos) {
+        if (this.invulneravel < turnos) {
+            invulneravel = turnos;
         }
-        else if (defended > 0) {
-            dano -= defended;
-            vida -= dano;
+    }
+
+    public void stunnar(int turnos) {
+        if (stunned < turnos) {
+            stunned = turnos;
+        }
+    }
+
+    public void dano(int dano) {
+        if (invulneravel > 0) {
+            System.out.println("-- "+nome+" não sofreu dano por estar invulnerável.");
         }
         else {
-            vida -= dano;
+            if (defesa > dano) {
+                defesa -= dano;
+            }
+            else if (defesa > 0) {
+                dano -= defesa;
+                vida -= dano;
+            }
+            else {
+                vida -= dano;
+            }
+
+            if (vida < 0) {
+                vida = 0;
+            }
         }
+    }
+
+    public void danoDireto(int dano) {
+        vida -= dano;
 
         if (vida < 0) {
             vida = 0;
@@ -129,7 +173,7 @@ public class Personagem {
     }
 
     public void defender(int defesa) {
-        defended += defesa;
+        this.defesa += defesa;
     }
 
     public void curar(int cura) {
@@ -144,21 +188,13 @@ public class Personagem {
         this.vida = vida;
     }
 
-    public boolean[][] verificarHabilidade(boolean[][] vivos, int idPersonagem, int idHabilidade) {
+    public boolean[][] verificarHabilidade(boolean[][] vivos, boolean[] invulneraveis, int idPersonagem, int idHabilidade) {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagemAlvo) {
+    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
         Jogador[] jogadores = {jogador, alvo};
         return jogadores;
-    }
-
-    public void meuTurno() {
-
-    }
-
-    public void passarTurno() {
-
     }
 
     public boolean[] exibirHabilidadesDisponiveis(int energiasDisponiveis) {
@@ -175,12 +211,32 @@ public class Personagem {
         return habilidadesDisponiveis;
     }
 
+    public void meuTurno() {
+        if (invulneravel > 0) {
+            invulneravel--;
+        }
+    }
+
+    public void passarTurno() {
+        if (stunned > 0) {
+            stunned--;
+        }
+    }
+
     public String toString() {
         String str = "";
 
         str += nome+", ";
         str += descricao+". ";
         str += "Vida ("+vida+")";
+
+        if (invulneravel > 0) {
+            str += ", Invulnerável ("+invulneravel+")";
+        }
+
+        if (stunned > 0) {
+            str += ", Stunnado ("+stunned+")";
+        }
 
         return str;
     }

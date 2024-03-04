@@ -79,6 +79,16 @@ public class Jogador {
         return vivos;
     }
 
+    public boolean[] obterInvulneraveis(List<Personagem> personagensAdversario) {
+        boolean[] invulneraveis = new boolean[personagensAdversario.size()];
+
+        for (int i = 0; i < personagensAdversario.size(); i++) {
+            invulneraveis[i] = personagensAdversario.get(i).getInvulneravel() > 0;
+        }
+
+        return invulneraveis;
+    }
+
     public int[] calcularCustoEnergia(int custo, int energiasPersonagem) {
         int[] energiasGastas = new int[2];
 
@@ -97,7 +107,9 @@ public class Jogador {
     public boolean[][] verificarHabilidade(int idPersonagem, int idHabilidade, List<Personagem> personagensAdversario) {
         boolean[][] disponiveis;
         boolean[][] vivos = obterVivos(personagensAdversario);
-        disponiveis = personagens.get(idPersonagem).verificarHabilidade(vivos, idPersonagem, idHabilidade);
+        boolean[] invulneraveis = obterInvulneraveis(personagensAdversario);
+
+        disponiveis = personagens.get(idPersonagem).verificarHabilidade(vivos, invulneraveis, idPersonagem, idHabilidade);
 
         return disponiveis;
     }
@@ -105,10 +117,14 @@ public class Jogador {
     public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idPersonagem, int idHabilidade, int idPersonagemAlvo) {
         Personagem personagem = jogador.getPersonagens().get(idPersonagem);
 
-        return personagem.utilizarHabilidade(jogador, alvo, idHabilidade, idPersonagemAlvo);
+        return personagem.utilizarHabilidade(jogador, alvo, idHabilidade, idPersonagem, idPersonagemAlvo);
     }
 
     public void meuTurno() {
+        for (int i = 0; i < personagens.size(); i++) {
+            personagens.get(i).meuTurno();
+        }
+
         boolean[] vivos = obterVivos();
         int numVivos = 0;
 
@@ -143,28 +159,30 @@ public class Jogador {
     }
 
     public void passarTurno() {
+        for (int i = 0; i < personagens.size(); i++) {
+            personagens.get(i).passarTurno();
+        }
     }
 
-    public boolean[] exibirPersonagensVivos() {
+    public boolean[] exibirPersonagensVivosNaoStunnados() {
         boolean[] disponiveis = new boolean[personagens.size()];
 
-        System.out.print("Energia Preta ("+energias[3]+")");
-        if (personagens.get(0).getVida() > 0) {
+        if (personagens.get(0).getVida() > 0 && personagens.get(0).getStunned() == 0) {
             disponiveis[0] = true;
-            System.out.print("\n0) "+personagens.get(0));
-            System.out.print(" | Energia Vermelha ("+energias[0]+")");
+            System.out.print("0) Energia Vermelha ("+energias[0]+") | ");
+            System.out.print(personagens.get(0));
         }
-        if (personagens.get(1).getVida() > 0) {
+        if (personagens.get(1).getVida() > 0 && personagens.get(1).getStunned() == 0) {
             disponiveis[1] = true;
-            System.out.print("\n1) "+personagens.get(1));
-            System.out.print(" | Energia Amarela ("+energias[1]+")");
+            System.out.print("\n1) Energia Amarela ("+energias[1]+") | ");
+            System.out.print(personagens.get(1));
         }
-        if (personagens.get(2).getVida() > 0) {
+        if (personagens.get(2).getVida() > 0 && personagens.get(2).getStunned() == 0) {
             disponiveis[2] = true;
-            System.out.print("\n2) "+personagens.get(2));
-            System.out.print(" | Energia Azul ("+energias[2]+")");
+            System.out.print("\n2) Energia Azul ("+energias[2]+") | ");
+            System.out.print(personagens.get(2));
         }
-        System.out.println("");
+        System.out.println("\nEnergia Preta ("+energias[3]+")");
 
         return disponiveis;
     }
@@ -180,12 +198,15 @@ public class Jogador {
         String str = "";
 
         str += "===== "+nick+" =====\n";
-        str += personagens.get(0);
-        str += " | Energia Vermelha ("+energias[0]+")\n";
-        str += personagens.get(1);
-        str += " | Energia Amarela ("+energias[1]+")\n";
-        str += personagens.get(2);
-        str += " | Energia Azul ("+energias[2]+")\n";
+
+        str += "Energia Vermelha ("+energias[0]+") | ";
+        str += personagens.get(0)+"\n";
+        
+
+        str += "Energia Amarela ("+energias[1]+") | ";
+        str += personagens.get(1)+"\n";
+        str += "Energia Amarela ("+energias[2]+") | ";
+        str += personagens.get(2)+"\n";
         str += "Energia Preta ("+energias[3]+")";
 
         return str;
