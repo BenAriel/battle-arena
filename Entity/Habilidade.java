@@ -5,6 +5,7 @@ public class Habilidade {
     private String descricao;
     private int energia;
     private int countdown;
+    private int countdownAtual;
 
     public Habilidade(String nome, String descricao, int energia, int countdown) {
         this.nome = nome;
@@ -43,5 +44,20 @@ public class Habilidade {
 
     public void setCountdown(int countdown) {
         this.countdown = countdown;
+    }
+
+    public int getCountdownAtual() {
+        return countdownAtual;
+    }
+
+    public void setCountdownAtual() {
+        this.countdownAtual = this.countdown;
+    }
+
+    public void passarTurno() {
+        System.out.println(countdownAtual);
+        if (countdownAtual > 0) {
+            countdownAtual--;
+        }
     }
 }

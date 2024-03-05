@@ -10,8 +10,6 @@ public class Partida {
     private int vencedor; //0 para nenhum,1 para jogador 1, 2 para jogador 2
     private Duration tempoPorTurno;
     private int turnos;
-    private int idJogador;
-    private int idAdversario;
     private int turnoMaximo;
 
     public Partida(Jogador[] jogadores) {
@@ -19,8 +17,6 @@ public class Partida {
         setTurnos(0);
         setTurnoMaximo(100);
         setVencedor(0);
-        idJogador = 0;
-        idAdversario = 1;
     }
 
     public Jogador[] getJogadores() {
@@ -75,20 +71,20 @@ public class Partida {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("---");
-        boolean[] personagensDisponiveis = jogadores[idJogador].exibirPersonagensVivosNaoStunnados();
+        boolean[] personagensDisponiveis = jogadores[0].exibirPersonagensVivosNaoStunnados();
         int escolhaPersonagem = scanner.nextInt();
         System.out.println("---");
 
         if (escolhaPersonagem >= 0 && escolhaPersonagem < personagensDisponiveis.length && personagensDisponiveis[escolhaPersonagem]) {
-                Personagem personagem = jogadores[idJogador].getPersonagens().get(escolhaPersonagem);
+                Personagem personagem = jogadores[0].getPersonagens().get(escolhaPersonagem);
 
-                int[] energias = jogadores[idJogador].getEnergia();
+                int[] energias = jogadores[0].getEnergia();
                 boolean[] habilidadesDisponiveis = personagem.exibirHabilidadesDisponiveis(energias[escolhaPersonagem]+energias[3]);
 
                 int escolhaHabilidade = scanner.nextInt();
 
                 if (escolhaHabilidade >= 0 && escolhaHabilidade < habilidadesDisponiveis.length && habilidadesDisponiveis[escolhaHabilidade]) {
-                    boolean[][] receptoresDisponiveis = jogadores[idJogador].verificarHabilidade(escolhaPersonagem, escolhaHabilidade, jogadores[idAdversario].getPersonagens());
+                    boolean[][] receptoresDisponiveis = jogadores[0].verificarHabilidade(escolhaPersonagem, escolhaHabilidade, jogadores[1].getPersonagens());
 
                     // exibição de personagens "receptores" disponíveis
                     System.out.println("---");
@@ -101,7 +97,6 @@ public class Partida {
                         }
                     }
 
-                    // adicição de habilidade a controlador
                     int escolhaAlvo = scanner.nextInt();
                     if (escolhaAlvo >= 0 && escolhaAlvo < 3 && (receptoresDisponiveis[0][escolhaAlvo] || receptoresDisponiveis[1][escolhaAlvo])) {
                         boolean unicaHabilidadePersonagemTurno = true;
@@ -112,15 +107,15 @@ public class Partida {
                         }
 
                         if (unicaHabilidadePersonagemTurno) {
-                            int[] energiasJogador = jogadores[idJogador].getEnergia();
+                            int[] energiasJogador = jogadores[0].getEnergia();
                             int custoHabilidadeAtual = personagem.getHabilidades()[escolhaHabilidade].getEnergia();
-                            int[] custoCalculadoPorEnergia = jogadores[idJogador].calcularCustoEnergia(custoHabilidadeAtual, energiasJogador[escolhaPersonagem]);
+                            int[] custoCalculadoPorEnergia = jogadores[0].calcularCustoEnergia(custoHabilidadeAtual, energiasJogador[escolhaPersonagem]);
 
                             habilidadesPendentes.add(new HabilidadePendente(escolhaPersonagem, escolhaHabilidade, escolhaAlvo, custoCalculadoPorEnergia[0], custoCalculadoPorEnergia[1]));
                         
                             // remove "provisoriamente" as energias, até a habilidade, possivelmente, ser cancelada
-                            jogadores[idJogador].removerEnergias(escolhaPersonagem, custoCalculadoPorEnergia[0]);
-                            jogadores[idJogador].removerEnergias(3, custoCalculadoPorEnergia[1]);
+                            jogadores[0].removerEnergias(escolhaPersonagem, custoCalculadoPorEnergia[0]);
+                            jogadores[0].removerEnergias(3, custoCalculadoPorEnergia[1]);
                         }
                     }
                 }
@@ -128,8 +123,8 @@ public class Partida {
     }
 
     public void habilidadePendentes() {
+        Scanner scanner = new Scanner(System.in);
         if (habilidadesPendentes.size() > 0) {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("---");
     
             for (int i = 0; i < habilidadesPendentes.size(); i++) {
@@ -145,31 +140,30 @@ public class Partida {
 
                 habilidadesPendentes.remove(escolha);
 
-                jogadores[idJogador].adicionarEnergias(idPersonagem, custoPrincipal);
-                jogadores[idJogador].adicionarEnergias(3, custoPreto);
+                jogadores[0].adicionarEnergias(idPersonagem, custoPrincipal);
+                jogadores[0].adicionarEnergias(3, custoPreto);
             }
-
+        }
+        else {
+            System.out.println("Nenhuma habilidade pendente.");
+            scanner.nextLine();
         }
     }
 
     public void passarTurno() {
-        // troca de jogador
-        int aux = idJogador;
-        idJogador = idAdversario;
-        idAdversario = aux;
     }
 
     public void turno() {
         Scanner scanner = new Scanner (System.in);
 
-        jogadores[idJogador].meuTurno();
+        jogadores[0].meuTurno();
 
         int escolha = 0;
         
         while (escolha != -1) {
-            System.out.println(jogadores[idJogador]);
+            System.out.println(jogadores[0]);
             System.out.println("---");
-            jogadores[idAdversario].exibirPersonagensSemEnergia();
+            jogadores[1].exibirPersonagensSemEnergia();
             System.out.println("---");
 
             System.out.println("1. Passar Turno | 2. Utilizar Habilidade | 3. Habilidade Pendentes");
@@ -182,9 +176,9 @@ public class Partida {
                     int idHabilidade = habilidadesPendentes.get(0).getIdHabilidade();
                     int idAlvo = habilidadesPendentes.get(0).getIdPersonagemAlvo();
 
-                    Jogador[] recepJogadores = jogadores[idJogador].utilizarHabilidade(jogadores[idJogador], jogadores[idAdversario], idPersonagem, idHabilidade, idAlvo);
-                    jogadores[idJogador] = recepJogadores[0];
-                    jogadores[idAdversario] = recepJogadores[1];
+                    Jogador[] recepJogadores = jogadores[0].utilizarHabilidade(jogadores[0], jogadores[1], idPersonagem, idHabilidade, idAlvo);
+                    jogadores[0] = recepJogadores[0];
+                    jogadores[1] = recepJogadores[1];
 
                     habilidadesPendentes.remove(0);
                 }
@@ -192,11 +186,12 @@ public class Partida {
                 scanner.nextLine();
                 scanner.nextLine();
 
-                jogadores[idJogador].passarTurno();
-                jogadores[idAdversario].meuTurno();
-                int idAux = idJogador;
-                idJogador = idAdversario;
-                idAdversario = idAux;
+
+                jogadores[0].passarTurno();
+                Jogador jogadorAux = jogadores[0];
+                jogadores[0] = jogadores[1];
+                jogadores[1] = jogadorAux;
+                jogadores[0].meuTurno();
                 System.out.println("==========\n\n\n\n\n");
 
             }

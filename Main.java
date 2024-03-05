@@ -6,6 +6,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.time.Duration;
+import java.util.ArrayList;
+
+import Entity.Jogador;
+import Entity.Partida;
+import Entity.Personagem;
+import Entity.Personagens.Fade;
+import Entity.Personagens.Sage;
+import Entity.Personagens.Viper;
 
 public class Main extends Application {
     private Duration tempoPorTurno = Duration.ofSeconds(30);
@@ -14,8 +22,23 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        
+        Jogador[] jogadores = new Jogador[2];
 
-        System.out.println("Hello World!\n");
+        ArrayList<Personagem> personagensA = new ArrayList<>();
+        personagensA.add(new Fade());
+        personagensA.add(new Sage());
+        personagensA.add(new Viper());
+        jogadores[0] = new Jogador ("Ariel", personagensA);
+
+        ArrayList<Personagem> personagensB = new ArrayList<>();
+        personagensB.add(new Viper());
+        personagensB.add(new Sage());
+        personagensB.add(new Fade());
+        jogadores[1] = new Jogador ("Lucas", personagensB);
+
+        Partida partidaA = new Partida(jogadores);
+        partidaA.turno();
     }
 
     @Override

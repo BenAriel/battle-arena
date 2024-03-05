@@ -17,22 +17,22 @@ public class Sage extends Personagem {
         int energia;
 
         nome = "Orbe Curativo";
-        descricao = "Com um Orbe Curativo, Sage recupera 25 pontos de vida de um aliado.";
+        descricao = "Sage usa um orbe curativo em um aliado.    \n\t Cura(25).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe de Lentidão";
-        descricao = "Sage joga um Orbe de Lentidão nos inimigos, ficando stunados por 1 turno e tomando 15 pontos de dano. Cada inimigo têm 50% de chance de ser atingido.";
+        descricao = "Sage joga um Orbe de Lentidão nos inimigos.    \n\t Dano(15); Stun(1); Múltiplos Alvos; Chance(50%).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe de Barreira";
-        descricao = "Com um Orbe de Barreira, Sage cria uma barreira, ficando invulnerável por 1 turno. Cada aliado tem 10% de chance de ser protegido pela barreira.";
+        descricao = "Sage usa uma Orbe de Barreira, protegendo a si e podendo proteger aliados. \n\t Invulnerável(1); Chance(20%).";
         energia = 2;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Ressurreição";
-        descricao = "Sage usa uma habilidade de ressurreição em um aliado, que retorna com 40 pontos de vida.";
+        descricao = "Sage usa uma habilidade de ressurreição em um aliado. \n\t Vida(40).";
         energia = 5;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -65,18 +65,27 @@ public class Sage extends Personagem {
         String nomeJogador = jogador.getNick();
         String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
 
+        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+
         System.out.println("Sage ("+nomeJogador+") utilizou "+nomeHabilidade+".");
 
         if (idHabilidade == 0) {
+            if (idPersonagem == idPersonagemAlvo) {
+                System.out.print("Sage se curou ("+jogador.getPersonagens().get(idPersonagemAlvo).getVida());
+            }
+            else {
+                System.out.print("- "+jogador.getPersonagens().get(idPersonagemAlvo).getNome()+" recebeu 25 pontos de cura de Sage ("+jogador.getPersonagens().get(idPersonagemAlvo).getVida());
+            }
             jogador.getPersonagens().get(idPersonagemAlvo).curar(25);
+            System.out.println(" -> "+jogador.getPersonagens().get(idPersonagemAlvo).getVida()+").");
         }
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 &&alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(50)) { // se o personagem estiver vivo, executa em 50% dos casos
+                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(50)) { // se o personagem estiver vivo, executa em 50% dos casos
                     alvo.getPersonagens().get(i).dano(15);
                     alvo.getPersonagens().get(i).stunnar(1);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou dano e foi stunado(a).");
+                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 15 pontos de dano e foi atordoado(a).");
                 }
             }
         }
@@ -94,6 +103,7 @@ public class Sage extends Personagem {
 
         else if (idHabilidade == 3) {
             jogador.getPersonagens().get(idPersonagemAlvo).ressuscitar(40);
+            System.out.println("- "+jogador.getPersonagens().get(idPersonagemAlvo).getNome()+" foi ressucitado(a) por Sage.");
         }
 
         Jogador[] jogadores = {jogador, alvo};

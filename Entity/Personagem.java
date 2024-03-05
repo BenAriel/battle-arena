@@ -2,7 +2,7 @@ package Entity;
 
 import java.util.ArrayList;
 
-public class Personagem {
+public abstract class Personagem {
     private String nome;
     private String descricao;
     private int vida;
@@ -143,24 +143,19 @@ public class Personagem {
     }
 
     public void dano(int dano) {
-        if (invulneravel > 0) {
-            System.out.println("-- "+nome+" não sofreu dano por estar invulnerável.");
+        if (defesa > dano) {
+            defesa -= dano;
+        }
+        else if (defesa > 0) {
+            dano -= defesa;
+            vida -= dano;
         }
         else {
-            if (defesa > dano) {
-                defesa -= dano;
-            }
-            else if (defesa > 0) {
-                dano -= defesa;
-                vida -= dano;
-            }
-            else {
-                vida -= dano;
-            }
+            vida -= dano;
+        }
 
-            if (vida < 0) {
-                vida = 0;
-            }
+        if (vida < 0) {
+            vida = 0;
         }
     }
 
@@ -202,9 +197,27 @@ public class Personagem {
         boolean[] habilidadesDisponiveis = new boolean[4];
 
         for (int i = 0; i < custoHabilidades.length; i++) {
-            if (energiasDisponiveis >= custoHabilidades[i]) {
+            if (energiasDisponiveis >= custoHabilidades[i] && habilidades[i].getCountdownAtual() == 0) {
                 habilidadesDisponiveis[i] = true;
-                System.out.println(i+". "+habilidades[i].getNome()+" ("+custoHabilidades[i]+")");
+                System.out.print(i+". "+habilidades[i].getNome()+" ("+custoHabilidades[i]+" energia");
+
+                if (custoHabilidades[i] > 1) {
+                    System.out.print('s');
+                }
+
+                System.out.println(") / "+habilidades[i].getDescricao());
+            }
+        }
+
+        boolean exibiuCoutdown = false;
+        for (int i = 0; i < custoHabilidades.length; i++) {
+            if (habilidades[i].getCountdownAtual() > 0) {
+                if (!exibiuCoutdown) {
+                    exibiuCoutdown = true;
+                    System.out.println("Countdown:");
+                }
+
+                System.out.println(habilidades[i].getNome()+" ("+habilidades[i].getCountdownAtual()+" Turnos)");
             }
         }
         
@@ -218,6 +231,10 @@ public class Personagem {
     }
 
     public void passarTurno() {
+        for (int i = 0; i < habilidades.length; i++) {
+            habilidades[i].passarTurno();
+        }
+
         if (stunned > 0) {
             stunned--;
         }

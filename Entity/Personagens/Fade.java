@@ -17,22 +17,22 @@ public class Fade extends Personagem {
         int energia;
 
         nome = "Claudura";
-        descricao = "Com um nódulo de puro temor, Fade stunna um inimigo por 1 turno e diminui 15 pontos de sua vida.";
+        descricao = "Fade arremessa Nódulo de Puro Temor em um alvo. \n\tDano (20); Stun (1).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Assombrar";
-        descricao = "Fade dispara uma assombração. Cada inimigo atingido sofre 30 pontos de dano.   (40% de chance de acerto)";
-        energia = 3;
+        descricao = "Fade dispara uma Assombração. \n\tDano(30); Múltiplos Alvos; Chance (40%).";
+        energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Espreitador";
-        descricao = "Fade envia um Espreitador, atordoando um inimigo aleatório. O inimigo perderá 10 pontos de vida.";
+        descricao = "Fade envia um Espreitador, atordoando um inimigo aleatório. \n\tDano(10); Stun(1).";
         energia = 1;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Véu da Noite";
-        descricao = "Fade dispara o poder dos pesadelo. Inimigos atingidos ficarão atordoados por 3 turnos e sofrerão 30 pontos de dano não-defensável. (40% de chance de acerto)";
+        descricao = "Fade dispara o poder dos pesadelo. Inimigos atingidos ficarão atordoados. \n\t Dano(35); Stun(3); Ignora Defesa; Chance(30%).";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -64,19 +64,21 @@ public class Fade extends Personagem {
         String nomeJogador = jogador.getNick();
         String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
 
+        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+
         System.out.println("Fade ("+nomeJogador+") utilizou "+nomeHabilidade+".");
 
         if (idHabilidade == 0) {
-            alvo.getPersonagens().get(idPersonagemAlvo).dano(15);
+            alvo.getPersonagens().get(idPersonagemAlvo).dano(20);
             alvo.getPersonagens().get(idPersonagemAlvo).stunnar(1);
-            System.out.println("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+" tomou 15 pontos de dano e foi stunnado.");
+            System.out.println("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+" sofreu 20 pontos de dano e foi atordoado(a).");
         }
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && random.chance(80)) {
+                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(40)) {
                     alvo.getPersonagens().get(i).dano(30);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou 30 pontos de dano.");
+                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 30 pontos de dano.");
                 }
             }
         }
@@ -99,7 +101,7 @@ public class Fade extends Personagem {
                         alvo.getPersonagens().get(valor).dano(10);
                         alvo.getPersonagens().get(valor).stunnar(1);
 
-                        System.out.println("- "+alvo.getPersonagens().get(valor).getNome()+" tomou 10 pontos de dano e ficou atordoado.");
+                        System.out.println("- "+alvo.getPersonagens().get(valor).getNome()+" sofreu 10 pontos de dano e foi atordoado(a).");
                         ativador = false;
                     }
                 }
@@ -110,9 +112,10 @@ public class Fade extends Personagem {
 
         else if (idHabilidade == 3) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && random.chance(40)) {
-                    alvo.getPersonagens().get(i).dano(30);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou 30 pontos de dano.");
+                if (alvo.getPersonagens().get(i).getVida() > 0 && random.chance(30)) {
+                    alvo.getPersonagens().get(i).danoDireto(30);
+                    alvo.getPersonagens().get(i).stunnar(3);
+                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" tomou 35 pontos de dano e foi atordoado(a).");
                 }
             }
         }
