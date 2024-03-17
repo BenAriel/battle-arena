@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="BarraInferior" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaPartidaController">
+   <children>
+      <Pane layoutX="100.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char1" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="215.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida1" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char2" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="395.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida2" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char3" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="575.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida3" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char4" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="215.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida4" layoutX="21.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char5" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="395.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida5" layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Char6" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/X.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="1130.0" layoutY="575.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
+         <children>
+            <Rectangle fx:id="Rect6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="Vida6" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="608.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: red;">
+         <children>
+            <Text fx:id="EnergiaVermelha" fill="WHITE" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="648.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: #DEAF0C;">
+         <children>
+            <Text fx:id="EnergiaAmarela" fill="WHITE" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="688.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: blue;">
+         <children>
+            <Text fx:id="EnergiaAzul" fill="WHITE" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="728.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: black;">
+         <children>
+            <Text fx:id="EnergiaPreta" fill="WHITE" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="635.0" layoutY="40.0" onMouseClicked="#passarTurno" strokeType="OUTSIDE" strokeWidth="0.0" text="Passar Turno">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Pane layoutX="250.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/Interrogation.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="370.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade0Pers1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown0Pers1" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="480.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade1Pers1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown1Pers1" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="590.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade2Pers1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown2Pers1" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="700.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade3Pers1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown3Pers1" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="250.0" layoutY="290.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/Interrogation.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="370.0" layoutY="290.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade0Pers2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown0Pers2" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="480.0" layoutY="290.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade1Pers2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown1Pers2" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="590.0" layoutY="290.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade2Pers2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown2Pers2" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="700.0" layoutY="290.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade3Pers2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown3Pers2" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="250.0" layoutY="470.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Personagens/Interrogation.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="370.0" layoutY="470.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade0Pers3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown0Pers3" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="480.0" layoutY="470.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade1Pers3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown1Pers3" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="588.0" layoutY="470.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade2Pers3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown2Pers3" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="700.0" layoutY="470.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <ImageView fx:id="Habilidade3Pers3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidade" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="Countdown3Pers3" layoutX="77.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="17.734375">
+               <font>
+                  <Font name="Candara" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="BarraInferior" layoutX="250.0" layoutY="587.0" prefHeight="85.0" prefWidth="859.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+         <children>
+            <Text fx:id="NomeHabilidadeClicada" layoutX="53.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Habilidades">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Text>
+            <Pane fx:id="QuadradoEnergiaHabilidadeClicada" layoutX="14.0" layoutY="11.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: BLACK;">
+               <children>
+                  <Text fx:id="EnergiaHabilidadeClicada" fill="WHITE" layoutX="11.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Arial Black" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children></Pane>
+   </children>
+</AnchorPane>
