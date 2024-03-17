@@ -55,7 +55,6 @@ public class Habilidade {
     }
 
     public void passarTurno() {
-        System.out.println(countdownAtual);
         if (countdownAtual > 0) {
             countdownAtual--;
         }

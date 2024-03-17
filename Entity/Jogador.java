@@ -115,6 +115,16 @@ public class Jogador {
     }
 
     public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idPersonagem, int idHabilidade, int idPersonagemAlvo) {
+        int custo = personagens.get(idPersonagem).getHabilidades()[idHabilidade].getEnergia();
+
+        if (custo <= energias[idPersonagem]) {
+            energias[idPersonagem] -= custo;
+        }
+        else {
+            custo -= energias[idPersonagem];
+            energias[3] -= custo;
+        }
+
         Personagem personagem = jogador.getPersonagens().get(idPersonagem);
 
         return personagem.utilizarHabilidade(jogador, alvo, idHabilidade, idPersonagem, idPersonagemAlvo);

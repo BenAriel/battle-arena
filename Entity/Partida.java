@@ -210,6 +210,15 @@ public class Partida {
 
     }
 
+    public void inverterJogadores() {
+        jogadores[0].passarTurno();
+        jogadores[1].meuTurno();
+
+        Jogador jogadorAux = jogadores[0];
+        jogadores[0] = jogadores[1];
+        jogadores[1] = jogadorAux;
+    }
+
     public String toString() {
         String str = "";
 

@@ -17,22 +17,22 @@ public class Fade extends Personagem {
         int energia;
 
         nome = "Claudura";
-        descricao = "Fade arremessa Nódulo de Puro Temor em um alvo. \n\tDano (20); Stun (1).";
+        descricao = "Fade arremessa Nódulo de Puro Temor em um alvo. \nDano (20); Stun (1).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Assombrar";
-        descricao = "Fade dispara uma Assombração. \n\tDano(30); Múltiplos Alvos; Chance (40%).";
+        descricao = "Fade dispara uma Assombração. \nDano(30); Múltiplos Alvos; Chance (40%).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Espreitador";
-        descricao = "Fade envia um Espreitador, atordoando um inimigo aleatório. \n\tDano(10); Stun(1).";
+        descricao = "Fade envia um Espreitador, atordoando um inimigo aleatório. \nDano(10); Stun(1).";
         energia = 1;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Véu da Noite";
-        descricao = "Fade dispara o poder dos pesadelo. Inimigos atingidos ficarão atordoados. \n\t Dano(35); Stun(3); Ignora Defesa; Chance(30%).";
+        descricao = "Fade dispara o poder dos pesadelo. Inimigos atingidos ficarão atordoados. \nDano(35); Stun(3); Ignora Defesa; Chance(30%).";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 

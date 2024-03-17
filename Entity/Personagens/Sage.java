@@ -17,22 +17,22 @@ public class Sage extends Personagem {
         int energia;
 
         nome = "Orbe Curativo";
-        descricao = "Sage usa um orbe curativo em um aliado.    \n\t Cura(25).";
+        descricao = "Sage usa um orbe curativo em um aliado.    \nCura(25).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe de Lentidão";
-        descricao = "Sage joga um Orbe de Lentidão nos inimigos.    \n\t Dano(15); Stun(1); Múltiplos Alvos; Chance(50%).";
+        descricao = "Sage joga um Orbe de Lentidão nos inimigos.    \nDano(15); Stun(1); Múltiplos Alvos; Chance(50%).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe de Barreira";
-        descricao = "Sage usa uma Orbe de Barreira, protegendo a si e podendo proteger aliados. \n\t Invulnerável(1); Chance(20%).";
+        descricao = "Sage usa uma Orbe de Barreira, protegendo a si e podendo proteger aliados. \nInvulnerável(1); Chance(20%).";
         energia = 2;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Ressurreição";
-        descricao = "Sage usa uma habilidade de ressurreição em um aliado. \n\t Vida(40).";
+        descricao = "Sage usa uma habilidade de ressurreição em um aliado. \nVida(40).";
         energia = 5;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 

@@ -1,9 +1,7 @@
 package Controller;
 
 import Entity.*;
-import Entity.Personagens.Fade;
-import Entity.Personagens.Sage;
-import Entity.Personagens.Viper;
+import Entity.Personagens.*;
 
 import java.util.ArrayList;
 
@@ -14,9 +12,9 @@ public class Dados {
 
     public static void gerarJogadores() {
         ArrayList<Personagem> timeA = new ArrayList<>();
-        timeA.add(new Sage());
-        timeA.add(new Fade());
-        timeA.add(new Viper());
+        timeA.add(new Garen());
+        timeA.add(new Ivern());
+        timeA.add(new Kennen());
         jogadorA = new Jogador("Lucas", timeA);
 
         ArrayList<Personagem> timeB = new ArrayList<>();

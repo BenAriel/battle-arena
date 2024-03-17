@@ -17,22 +17,22 @@ public class Viper extends Personagem {
         int energia;
 
         nome = "Nuvem Venenosa";
-        descricao = "Viper dispara um emissor de gás nos inimigos. \n\t Dano(20); Múltiplos Alvos; Chance(50%).";
+        descricao = "Viper dispara um emissor de gás nos inimigos. \nDano(20); Múltiplos Alvos; Chance(50%).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Cortina Tóxica";
-        descricao = "Viper dispara uma longa linha de gás. \n\t Dano(30); Múltiplos Alvos; Chance(50%)";
+        descricao = "Viper dispara uma longa linha de gás. \nDano(30); Múltiplos Alvos; Chance(50%)";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Veneno de Cobra";
-        descricao = "Viper lança um cilindro, que se rompe e de gera uma zona química. \n\t Dano(40); Stun(1); Dano Aleatório.";
+        descricao = "Viper lança um cilindro, que se rompe e de gera uma zona química. \nDano(40); Stun(1); Dano Aleatório.";
         energia = 3;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Poço Peçonhento";
-        descricao = "Viper cria uma grande nuvem que reduz a vida dos inimigos. \n\t Dano; (40); Invulnerável(2); Ignora Defesa; Dano Aleatório.";
+        descricao = "Viper cria uma grande nuvem que reduz a vida dos inimigos. \nDano; (40); Invulnerável(2); Ignora Defesa; Dano Aleatório.";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
