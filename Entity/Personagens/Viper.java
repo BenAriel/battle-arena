@@ -17,22 +17,22 @@ public class Viper extends Personagem {
         int energia;
 
         nome = "Nuvem Venenosa";
-        descricao = "Viper dispara um emissor de gás nos inimigos. \nDano(20); Múltiplos Alvos; Chance(50%).";
+        descricao = "Viper dispara um emissor de gás nos inimigos. \nDano(15); Múltiplos Alvos.";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Cortina Tóxica";
-        descricao = "Viper dispara uma longa linha de gás. \nDano(30); Múltiplos Alvos; Chance(50%)";
+        descricao = "Viper dispara uma longa linha de gás. \nDano(25); Múltiplos Alvos.";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Veneno de Cobra";
-        descricao = "Viper lança um cilindro, que se rompe e de gera uma zona química. \nDano(40); Stun(1); Dano Aleatório.";
+        descricao = "Viper lança um cilindro, que se rompe e de gera uma zona química. \nDano(20); Stun(1); Múltiplos Alvos.";
         energia = 3;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Poço Peçonhento";
-        descricao = "Viper cria uma grande nuvem que reduz a vida dos inimigos. \nDano; (40); Invulnerável(2); Ignora Defesa; Dano Aleatório.";
+        descricao = "Viper cria uma grande nuvem que reduzindo a vida de um inimigo para um mínimo de 1. \nDano Máximo: (50); Invulnerável(2); Ignora Defesa.";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -66,61 +66,37 @@ public class Viper extends Personagem {
 
         jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
-        System.out.println("Fade ("+nomeJogador+") utilizou "+nomeHabilidade+".");
-
         if (idHabilidade == 0) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(50)) {
-                    alvo.getPersonagens().get(i).dano(20);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 20 pontos de dano.");
+                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
+                    alvo.getPersonagens().get(i).dano(15);
                 }
             }
         }
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0 && random.chance(50)) {
-                    alvo.getPersonagens().get(i).dano(30);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 30 pontos de dano.");
+                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
+                    alvo.getPersonagens().get(i).dano(25);
                 }
             }
         }
 
         else if (idHabilidade == 2) {
-            boolean ativador = true;
-            
-            Integer[] lista = {0, 1, 2};
-            while (ativador) {
-                int valor = random.choice(lista);
-
-                if (alvo.getPersonagens().get(valor).getVida() > 0 && alvo.getPersonagens().get(valor).getInvulneravel() == 0) {
-                    alvo.getPersonagens().get(valor).dano(10);
-                    alvo.getPersonagens().get(valor).stunnar(1);
-
-                    System.out.println("- "+alvo.getPersonagens().get(valor).getNome()+" tomou 30 pontos de dano e ficou atordoado.");
-                    ativador = false;
+            for (int i = 0; i < 3; i++) {
+                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
+                    alvo.getPersonagens().get(i).dano(20);
+                    alvo.getPersonagens().get(i).stunnar(1);
                 }
             }
-
         }
 
         else if (idHabilidade == 3) {
-            boolean ativador = true;
+            alvo.getPersonagens().get(idPersonagemAlvo).dano(50);
 
-            Integer[] lista = {0, 1, 2};
-            while (ativador) {
-                int valor = random.choice(lista);
-
-                if (alvo.getPersonagens().get(valor).getVida() > 0) {
-                    alvo.getPersonagens().get(valor).danoDireto(40);
-                    jogador.getPersonagens().get(idPersonagem).ficarInvulneravel(2);
-
-                    System.out.println("- "+alvo.getPersonagens().get(valor).getNome()+" tomou 40 pontos de dano.");
-                    System.out.println("- Viper ficou invulnerável por 2 turnos.");
-                    ativador = false;
-                }
+            if (alvo.getPersonagens().get(idPersonagemAlvo).getVida() == 0) {
+                alvo.getPersonagens().get(idPersonagemAlvo).setVida(1);
             }
-
         }
 
         Jogador[] jogadores = {jogador, alvo};

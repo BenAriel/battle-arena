@@ -42,6 +42,7 @@ public class Ivern extends Personagem {
     public boolean[][] verificarHabilidade(boolean[][] vivos, boolean[] invulneraveis, int idPersonagem, int idHabilidade) {
         if (idHabilidade == 0) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 1) {
             vivos = bloquearInimigos(vivos);
@@ -53,6 +54,7 @@ public class Ivern extends Personagem {
         }
         else if (idHabilidade == 3) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
 
         return vivos;
