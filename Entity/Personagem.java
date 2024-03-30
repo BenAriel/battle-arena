@@ -1,8 +1,11 @@
 package Entity;
 
+import Controller.Dados;
 import java.util.ArrayList;
+import Resources.Aleatory;
 
 public abstract class Personagem {
+    private int turno;
     private String nome;
     private String descricao;
     private int vida;
@@ -14,6 +17,7 @@ public abstract class Personagem {
     private int defesa;
 
     public Personagem(String nome, String descricao, int vida, Habilidade[] habilidades) {
+        turno = 0;
         this.nome = nome;
         this.descricao = descricao;
         this.vida = vida;
@@ -91,6 +95,12 @@ public abstract class Personagem {
     public void setDefesa(int defesa) {
         this.defesa = defesa;
     }
+
+    public int getTurno() {
+        return turno;
+    };
+
+    public void setTurno(int turno) {this.turno = turno;};
     
     public boolean[][] bloquearAliados(boolean[][] personagens) {
         for (int i = 0; i < personagens[0].length; i++) {
@@ -187,9 +197,7 @@ public abstract class Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
-        Jogador[] jogadores = {jogador, alvo};
-        return jogadores;
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
     }
 
     public boolean[] exibirHabilidadesDisponiveis(int energiasDisponiveis) {
@@ -225,6 +233,8 @@ public abstract class Personagem {
     }
 
     public void meuTurno() {
+        turno++;
+
         if (invulneravel > 0) {
             invulneravel--;
         }

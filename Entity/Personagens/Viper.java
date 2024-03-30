@@ -1,5 +1,7 @@
 package Entity.Personagens;
 
+import Controller.Dados;
+import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
@@ -59,47 +61,52 @@ public class Viper extends Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
         Aleatory<Integer> random = new Aleatory<>();
-        String nomeJogador = jogador.getNick();
-        String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
 
-        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+        int idPersonagem = habilidade.getIdPersonagem();
+        int idHabilidade = habilidade.getIdHabilidade();
+        int idJogadorAlvo = habilidade.getIdJogadorAlvo();
+        int idPersonagemAlvo = habilidade.getIdPersonagemAlvo();
+
+        Jogador[] jogadores = Dados.partida.getJogadores();
+
+        jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
-                    alvo.getPersonagens().get(i).dano(15);
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(15);
                 }
             }
         }
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
-                    alvo.getPersonagens().get(i).dano(25);
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(25);
                 }
             }
         }
 
         else if (idHabilidade == 2) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) {
-                    alvo.getPersonagens().get(i).dano(20);
-                    alvo.getPersonagens().get(i).stunnar(1);
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(20);
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(1);
                 }
             }
         }
 
         else if (idHabilidade == 3) {
-            alvo.getPersonagens().get(idPersonagemAlvo).dano(50);
-
-            if (alvo.getPersonagens().get(idPersonagemAlvo).getVida() == 0) {
-                alvo.getPersonagens().get(idPersonagemAlvo).setVida(1);
+            if (jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).getVida() <= 50) {
+                jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).setVida(1);
+            }
+            else {
+                jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(50);
             }
         }
 
-        Jogador[] jogadores = {jogador, alvo};
-        return jogadores;
+        Dados.partida.setJogadores(jogadores);
     }
 }

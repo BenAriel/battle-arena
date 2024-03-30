@@ -1,5 +1,7 @@
 package Entity.Personagens;
 
+import Controller.Dados;
+import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
@@ -57,49 +59,44 @@ public class Garen extends Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
-        String nomeJogador = jogador.getNick();
-        String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
+        Resources.Aleatory<Integer> random = new Resources.Aleatory<>();
 
-        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+        int idPersonagem = habilidade.getIdPersonagem();
+        int idHabilidade = habilidade.getIdHabilidade();
+        int idJogadorAlvo = habilidade.getIdJogadorAlvo();
+        int idPersonagemAlvo = habilidade.getIdPersonagemAlvo();
 
-        System.out.println("Garen ("+nomeJogador+") utilizou "+nomeHabilidade+".");
+        Jogador[] jogadores = Dados.partida.getJogadores();
+
+        jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            
-                System.out.print("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+" recebeu 20 pontos de dano de Garen ("+alvo.getPersonagens().get(idPersonagemAlvo).getVida());
-            alvo.getPersonagens().get(idPersonagemAlvo).danoDireto(20);
-            System.out.println(" -> "+alvo.getPersonagens().get(idPersonagemAlvo).getVida()+").");
+            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).danoDireto(20);
         }
 
         else if (idHabilidade == 1) {
-
-            jogador.getPersonagens().get(idPersonagem).defender(50);
-                    System.out.println("Garen se defendeu.");
-                }
+            jogadores[0].getPersonagens().get(idPersonagem).defender(50);
+        }
 
 
         else if (idHabilidade == 2) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0) { 
-                    alvo.getPersonagens().get(i).dano(25);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 25 de dano.");
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(25);
                 }
             }
         }
 
         else if (idHabilidade == 3) {
-            if(alvo.getPersonagens().get(idPersonagemAlvo).getVida() <= 40){
-                alvo.getPersonagens().get(idPersonagemAlvo).danoDireto(40);
-                System.out.println("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+"   foi executado por Garen.");
+            if(jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).getVida() <= 40){
+                jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).danoDireto(40);
             }
             else{
-                alvo.getPersonagens().get(idPersonagemAlvo).dano(20);
-                System.out.println("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+" sofreu 20 de dano.");
+                jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(20);
             }
         }
 
-        Jogador[] jogadores = {jogador, alvo};
-        return jogadores;
+        Dados.partida.setJogadores(jogadores);
     }
 }

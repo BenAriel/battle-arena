@@ -1,5 +1,7 @@
 package Entity.Personagens;
 
+import Controller.Dados;
+import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
@@ -57,47 +59,46 @@ public class Kennen extends Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
-        String nomeJogador = jogador.getNick();
-        String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
+        Resources.Aleatory<Integer> random = new Resources.Aleatory<>();
 
-        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+        int idPersonagem = habilidade.getIdPersonagem();
+        int idHabilidade = habilidade.getIdHabilidade();
+        int idJogadorAlvo = habilidade.getIdJogadorAlvo();
+        int idPersonagemAlvo = habilidade.getIdPersonagemAlvo();
 
-        System.out.println("Kennen ("+nomeJogador+") utilizou "+nomeHabilidade+".");
+        Jogador[] jogadores = Dados.partida.getJogadores();
+
+        jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            if (alvo.getPersonagens().get(idPersonagemAlvo).getInvulneravel() == 0 && alvo.getPersonagens().get(idPersonagemAlvo).getVida() > 0){
-                alvo.getPersonagens().get(idPersonagemAlvo).dano(25);
-                System.out.println("- "+alvo.getPersonagens().get(idPersonagemAlvo).getNome()+" sofreu 25 pontos de dano de Kennen.");
+            if (jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).getInvulneravel() == 0 && jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).getVida() > 0){
+                jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(25);
             }
         }
 
         else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0){
-                    alvo.getPersonagens().get(i).dano(20);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 20 pontos de dano de Kennen.");
-                
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0){
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(20);
+
                 }
                 }
             }
 
         else if (idHabilidade == 2) {
-            jogador.getPersonagens().get(idPersonagem).ficarInvulneravel(2);
-            System.out.println(" Kennen ficará invulnerável por 2 turnos.");
+            jogadores[0].getPersonagens().get(idPersonagem).ficarInvulneravel(2);
         }
 
         else if (idHabilidade == 3) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0){
-                    alvo.getPersonagens().get(i).dano(30);
-                    alvo.getPersonagens().get(i).stunnar(1);
-                    System.out.println("- "+alvo.getPersonagens().get(i).getNome()+" sofreu 30 pontos de dano e foi atordoado(a) por Kennen.");
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0){
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(30);
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(1);
                 }
             }
         }
 
-        Jogador[] jogadores = {jogador, alvo};
-        return jogadores;
+        Dados.partida.setJogadores(jogadores);
     }
 }

@@ -105,29 +105,32 @@ public class Jogador {
     }
 
     public boolean[][] verificarHabilidade(int idPersonagem, int idHabilidade, List<Personagem> personagensAdversario) {
+        int countdown = getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].getCountdownAtual();
+        boolean stunnado = getPersonagens().get(idPersonagem).getStunned() > 0;
+        if (countdown > 0 || stunnado) {
+            boolean[][] retorno = new boolean[2][3];
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 3; j++) {
+                    retorno[i][j] = false;
+                }
+            }
+
+            return retorno;
+        }
+
         boolean[][] disponiveis;
         boolean[][] vivos = obterVivos(personagensAdversario);
         boolean[] invulneraveis = obterInvulneraveis(personagensAdversario);
 
         disponiveis = personagens.get(idPersonagem).verificarHabilidade(vivos, invulneraveis, idPersonagem, idHabilidade);
 
+
+
         return disponiveis;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idPersonagem, int idHabilidade, int idPersonagemAlvo) {
-        int custo = personagens.get(idPersonagem).getHabilidades()[idHabilidade].getEnergia();
-
-        if (custo <= energias[idPersonagem]) {
-            energias[idPersonagem] -= custo;
-        }
-        else {
-            custo -= energias[idPersonagem];
-            energias[3] -= custo;
-        }
-
-        Personagem personagem = jogador.getPersonagens().get(idPersonagem);
-
-        return personagem.utilizarHabilidade(jogador, alvo, idHabilidade, idPersonagem, idPersonagemAlvo);
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
+        getPersonagens().get(habilidade.getIdPersonagem()).utilizarHabilidade(habilidade);
     }
 
     public void meuTurno() {

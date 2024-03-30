@@ -1,6 +1,7 @@
 package Entity.Personagens;
 
 import Controller.Dados;
+import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
@@ -19,23 +20,23 @@ public class Reyna extends Personagem {
         int energia;
 
         nome = "Dispensar";
-        descricao = "Reyna consome um orbe de alma, ficando intangível. \nIntangível(1).";
-        energia = 1;
+        descricao = "";
+        energia = 0;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Devorar";
-        descricao = "Reyna recupera pontos de vida para cada inimigo morto. \nCura (30 p/ morto).";
-        energia = 2;
+        nome = "Olhar Voraz";
+        descricao = "";
+        energia = 0;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Olha Voraz";
-        descricao = "Um olhar etereo e destrutível. \nDano(25); Stun(1); Múltiplos Alvos; Chance(85%).";
-        energia = 3;
-        habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
-
         nome = "Imperatriz";
-        descricao = "Entra em estado de frenesi, aumentando de forma drástica suas habilidades. \nTurnos(2).";
-        energia = 3;
+        descricao = "Entra em estado de Frenesi, aumentando de forma drástica suas habilidades. \nTurnos (1).";
+        energia = 1;
+        habilidades[2] = new Habilidade(nome, descricao, energia, 3+energia);
+
+        nome = "Devorar";
+        descricao = "";
+        energia = 0;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
         return habilidades;
@@ -49,12 +50,12 @@ public class Reyna extends Personagem {
         }
         else if (idHabilidade == 1) {
             vivos = bloquearAliados(vivos);
-            vivos = bloquearInimigos(vivos);
-            vivos = permitirUsuario(vivos, idPersonagem);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 2) {
             vivos = bloquearAliados(vivos);
-            vivos = bloquearInvulneraveis(vivos, invulneraveis);
+            vivos = bloquearInimigos(vivos);
+            vivos = permitirUsuario(vivos, idPersonagem);
         }
         else if (idHabilidade == 3) {
             vivos = bloquearAliados(vivos);
@@ -65,81 +66,92 @@ public class Reyna extends Personagem {
         return vivos;
     }
 
-    public Jogador[] utilizarHabilidade(Jogador jogador, Jogador alvo, int idHabilidade, int idPersonagem, int idPersonagemAlvo) {
+    public void utilizarHabilidade(HabilidadePendente habilidade) {
         Aleatory<Integer> random = new Aleatory<>();
-        String nomeJogador = jogador.getNick();
-        String nomeHabilidade = getHabilidades()[idHabilidade].getNome();
 
-        jogador.getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
+        int idPersonagem = habilidade.getIdPersonagem();
+        int idHabilidade = habilidade.getIdHabilidade();
+        int idJogadorAlvo = habilidade.getIdJogadorAlvo();
+        int idPersonagemAlvo = habilidade.getIdPersonagemAlvo();
+
+        Jogador[] jogadores = Dados.partida.getJogadores();
+
+        jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
             for (int i = 0; i < 3; i++) {
-                if (ult == 0) {
-                    alvo.getPersonagens().get(i).ficarInvulneravel(1);
-                }
-                else {
-                    alvo.getPersonagens().get(i).ficarInvulneravel(2);
-                }
+                jogadores[1].getPersonagens().get(i).ficarInvulneravel(1);
             }
         }
 
-        if (idHabilidade == 1) {
-            if (nomeJogador.equals(Dados.jogadorA.getNick())) {
-                alvo = Dados.jogadorB;
-            }
-            else {
-                alvo = Dados.jogadorA;
-            }
-
+        else if (idHabilidade == 1) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() == 0) {
+                if (jogadores[1].getPersonagens().get(i).getVida() > 0 && jogadores[1].getPersonagens().get(i).getInvulneravel() == 0 && (random.chance(85) || ult > 0)) {
                     if (ult == 0) {
-                        jogador.getPersonagens().get(idPersonagem).curar(30);
+                        jogadores[1].getPersonagens().get(i).dano(25);
                     }
                     else {
-                        jogador.getPersonagens().get(idPersonagem).curar(40);
+                        jogadores[1].getPersonagens().get(i).dano(35);
                     }
+                    jogadores[1].getPersonagens().get(i).stunnar(1);
                 }
             }
         }
 
         else if (idHabilidade == 2) {
             for (int i = 0; i < 3; i++) {
-                if (alvo.getPersonagens().get(i).getVida() > 0 && alvo.getPersonagens().get(i).getInvulneravel() == 0 && (random.chance(85) || ult > 0)) {
+                ult = 2; // um extra pq sai depois que passa o turno
+                mudarDescricao();
+            }
+        }
+
+        if (idHabilidade == 3) {
+            for (int i = 0; i < 3; i++) {
+                if (jogadores[1].getPersonagens().get(i).getVida() == 0) {
                     if (ult == 0) {
-                        alvo.getPersonagens().get(i).dano(25);
-                        alvo.getPersonagens().get(i).stunnar(1);
+                        jogadores[0].getPersonagens().get(idPersonagem).curar(15);
                     }
                     else {
-                        alvo.getPersonagens().get(i).dano(40);
-                        alvo.getPersonagens().get(i).stunnar(2);
+                        jogadores[0].getPersonagens().get(idPersonagem).curar(25);
                     }
                 }
             }
         }
 
-        else if (idHabilidade == 3) {
-            for (int i = 0; i < 3; i++) {
-                ult = 3; // um extra pq sai depois que passa o turno
-                mudarDescricao();
-            }
-        }
-
-        Jogador[] jogadores = {jogador, alvo};
-        return jogadores;
+        Dados.partida.setJogadores(jogadores);
     }
 
     public void mudarDescricao() {
         if (ult > 0) {
-            getHabilidades()[0].setDescricao("Reyna consome um orbe de alma, ficando intangível. \nIntangível(2).");
-            getHabilidades()[1].setDescricao("Reyna recupera pontos de vida para cada inimigo morto. \nCura (40 p/ morto).");
-            getHabilidades()[2].setDescricao("Um olhar etereo e destrutível. \nDano(40); Stun(2); Múltiplos Alvos; Chance(100%).");
+            getHabilidades()[0].setDescricao("Reyna consome um orbe de alma, ficando intangível. \nIntangível(1).");
+            getHabilidades()[0].setEnergia(0);
+            getHabilidades()[1].setDescricao("Reyna usa Um olhar etereo e destrutível. \nDano(35); Stun(1); Múltiplos Alvos; Chance(66%).");
+            getHabilidades()[1].setEnergia(2);
+            getHabilidades()[3].setDescricao("Reyna recupera pontos de vida para cada inimigo morto. \nCura (25 p/ morto).");
+            getHabilidades()[3].setEnergia(2);
+
 
         }
-        else {
+        else if (ult == 0) {
             getHabilidades()[0].setDescricao("Reyna consome um orbe de alma, ficando intangível. \nIntangível(1).");
-            getHabilidades()[1].setDescricao("Reyna recupera pontos de vida para cada inimigo morto. \nCura (30 p/ morto).");
-            getHabilidades()[2].setDescricao("Um olhar etereo e destrutível. \nDano(25); Stun(1); Múltiplos Alvos; Chance(85%).");
+            getHabilidades()[0].setEnergia(1);
+            getHabilidades()[1].setDescricao("Reyna utiliza um olhar etereo e destrutivo. \nDano(25); Stun(1); Múltiplos Alvos; Chance(66%).");
+            getHabilidades()[1].setEnergia(2);
+            getHabilidades()[3].setDescricao("Reyna recupera pontos de vida para cada inimigo morto. \nCura (15 p/ morto).");
+            getHabilidades()[3].setEnergia(2);
+
+            for (int i = 0; i < 4; i++) {
+                getHabilidades()[i].setCountdown(getHabilidades()[i].getEnergia() + 3);
+            }
+        }
+    }
+
+    @Override
+    public void meuTurno() {
+        super.meuTurno();
+
+        if (getTurno() == 1) {
+            mudarDescricao();
         }
     }
 
