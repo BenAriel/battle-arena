@@ -52,7 +52,7 @@ public class Phoenix extends Personagem {
         }
         else if (idHabilidade == 2) {
             vivos = bloquearAliados(vivos);
-            vivos = permitirUsuario(vivos, idPersonagem);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 3) {
             vivos = bloquearInimigos(vivos);
@@ -102,8 +102,10 @@ public class Phoenix extends Personagem {
             jogadores[0].getPersonagens().get(idPersonagem).stunnar(1);
 
             for (int i = 0; i < 3; i++) {
-                jogadores[idJogadorAlvo].getPersonagens().get(i).dano(25);
-                jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(1);
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(25);
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(1);
+                }
 
                 if (i != idPersonagem && random.chance(20)) {
                     jogadores[0].getPersonagens().get(i).dano(25);

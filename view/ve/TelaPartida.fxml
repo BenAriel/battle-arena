@@ -333,5 +333,95 @@
                </children>
             </Pane>
          </children></Pane>
+      <ImageView fx:id="HabilidadeAtiva1Pers1Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="80.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva1Pers2Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="260.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva1Pers3Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="440.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers1Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="110.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers2Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="290.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers3Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="470.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers1Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="140.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers2Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="320.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers3Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="500.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva1Pers1Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="80.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers1Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="110.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers1Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="140.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva1Pers2Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="260.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers2Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="290.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers2Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="320.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva1Pers3Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="440.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva2Pers3Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="470.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva3Pers3Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="500.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

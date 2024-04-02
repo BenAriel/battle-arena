@@ -41,6 +41,14 @@ public class Partida {
         this.habilidadesPendentes = habilidadesPendentes;
     }
 
+    public Jogador getJogadorAtacante() {
+        return jogadores[0];
+    }
+
+    public Jogador getJogadorDefensor() {
+        return jogadores[1];
+    }
+
     public int getVencedor() {
         return vencedor;
     }

@@ -18,7 +18,7 @@ public class Garen extends Personagem {
         int energia;
 
         nome = "Acerto Decisivo";
-        descricao = "Garen corre até o inimigo e o acerta com a espada,ignorando qualquer proteção.    \n\t dano(20).";
+        descricao = "Garen corre até o inimigo e o acerta com a espada.    \n\t dano(20).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -43,6 +43,7 @@ public class Garen extends Personagem {
     public boolean[][] verificarHabilidade(boolean[][] vivos, boolean[] invulneraveis, int idPersonagem, int idHabilidade) {
         if (idHabilidade == 0) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 1) {
             vivos = bloquearAliados(vivos);
@@ -51,6 +52,7 @@ public class Garen extends Personagem {
         }
         else if (idHabilidade == 2) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 3) {
             vivos = bloquearAliados(vivos);
@@ -72,7 +74,7 @@ public class Garen extends Personagem {
         jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).danoDireto(20);
+            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(20);
         }
 
         else if (idHabilidade == 1) {

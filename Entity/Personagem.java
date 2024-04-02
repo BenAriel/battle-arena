@@ -157,8 +157,15 @@ public abstract class Personagem {
             defesa -= dano;
         }
         else if (defesa > 0) {
+            int danoInicial = dano;
+
             dano -= defesa;
             vida -= dano;
+
+            defesa -= danoInicial;
+            if (defesa < 0) {
+                defesa = 0;
+            }
         }
         else {
             vida -= dano;
@@ -198,38 +205,6 @@ public abstract class Personagem {
     }
 
     public void utilizarHabilidade(HabilidadePendente habilidade) {
-    }
-
-    public boolean[] exibirHabilidadesDisponiveis(int energiasDisponiveis) {
-        int[] custoHabilidades = {habilidades[0].getEnergia(), habilidades[1].getEnergia(), habilidades[2].getEnergia(), habilidades[3].getEnergia()};
-        boolean[] habilidadesDisponiveis = new boolean[4];
-
-        for (int i = 0; i < custoHabilidades.length; i++) {
-            if (energiasDisponiveis >= custoHabilidades[i] && habilidades[i].getCountdownAtual() == 0) {
-                habilidadesDisponiveis[i] = true;
-                System.out.print(i+". "+habilidades[i].getNome()+" ("+custoHabilidades[i]+" energia");
-
-                if (custoHabilidades[i] > 1) {
-                    System.out.print('s');
-                }
-
-                System.out.println(") / "+habilidades[i].getDescricao());
-            }
-        }
-
-        boolean exibiuCoutdown = false;
-        for (int i = 0; i < custoHabilidades.length; i++) {
-            if (habilidades[i].getCountdownAtual() > 0) {
-                if (!exibiuCoutdown) {
-                    exibiuCoutdown = true;
-                    System.out.println("Countdown:");
-                }
-
-                System.out.println(habilidades[i].getNome()+" ("+habilidades[i].getCountdownAtual()+" Turnos)");
-            }
-        }
-        
-        return habilidadesDisponiveis;
     }
 
     public void meuTurno() {

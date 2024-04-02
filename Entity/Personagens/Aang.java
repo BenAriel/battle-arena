@@ -5,11 +5,15 @@ import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
-import Resources.Aleatory;
 
-public class Toph extends Personagem {
-    public Toph() {
-        super("Toph", "A Bandida Cega", 100, geradorHabilidades());
+public class Aang extends Personagem {
+    public Aang() {
+        super("Aang", "Último Mestre do Ar", 100, geradorHabilidades());
+    }
+
+    public Aang(int vida) {
+        super("Aang", "Último Mestre do Ar", vida, geradorHabilidades());
+        getHabilidades()[3].setCountdownAtual();
     }
 
     private static Habilidade[] geradorHabilidades() {
@@ -18,23 +22,23 @@ public class Toph extends Personagem {
         String descricao;
         int energia;
 
-        nome = "Arremesso de Pedra";
-        descricao = "Toph arremessa uma pedra gigante em um inimigo. \n\tDano(30).";
+        nome = "Ciclone";
+        descricao = "Aang dispara um ciclone de ar em um inimigo..    \n\t Dano(25).";
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Cabana de Terra";
-        descricao = "Toph cria uma Cabana de Terra, protegendo-se ou protegendo um aliado.    \n\tDefesa(50).";
+        nome = "Coragem";
+        descricao = "Garen se inspira, ganhando motivação para continuar na batalha.  \n\t Defesa(50).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Armadura de Metal";
-        descricao = "Toph cria uma armadura de metal em volta de seu corpo.    \n\tInvulnerável(3).";
-        energia = 2;
+        nome = "Modo Avatar";
+        descricao = "Aang utiliza os poderes de todos os elementos em um ataque. \n\t Dano(35); Dano Múltiplo.";
+        energia = 4;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Pilares de Terra";
-        descricao = "Toph cria pilares de terra, que brotam do chão e arremessam inimigos. \n\tDano(35); Múltiplos Alvos.";
+        nome = "Dobra de Energia";
+        descricao = "Aang remove completamente os poderes do alvo, o impossibilitando de lutar. \n\t Dano Coletaral(25); Stun(4)";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -47,12 +51,12 @@ public class Toph extends Personagem {
             vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 1) {
-            vivos = bloquearInimigos(vivos);
+            vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 2) {
             vivos = bloquearAliados(vivos);
-            vivos = bloquearInimigos(vivos);
-            vivos = permitirUsuario(vivos, idPersonagem);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 3) {
             vivos = bloquearAliados(vivos);
@@ -63,7 +67,7 @@ public class Toph extends Personagem {
     }
 
     public void utilizarHabilidade(HabilidadePendente habilidade) {
-        Aleatory<Integer> random = new Aleatory<>();
+        Resources.Aleatory<Integer> random = new Resources.Aleatory<>();
 
         int idPersonagem = habilidade.getIdPersonagem();
         int idHabilidade = habilidade.getIdHabilidade();
@@ -75,21 +79,26 @@ public class Toph extends Personagem {
         jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(30);
+            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).danoDireto(20);
         }
 
         else if (idHabilidade == 1) {
-            jogadores[0].getPersonagens().get(idPersonagemAlvo).defender(50);
+            jogadores[0].getPersonagens().get(idPersonagem).defender(50);
         }
 
+
         else if (idHabilidade == 2) {
-            jogadores[0].getPersonagens().get(idPersonagem).ficarInvulneravel(3);
+            for (int i = 0; i < 3; i++) {
+                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).dano(35);
+                }
+            }
         }
 
         else if (idHabilidade == 3) {
-            for (int i = 0; i < 3; i++) {
-                jogadores[idJogadorAlvo].getPersonagens().get(i).dano(35);
-            }
+            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).stunnar(5);
+
+            jogadores[0].getPersonagens().get(idPersonagem).danoDireto(25);
         }
 
         Dados.partida.setJogadores(jogadores);

@@ -79,9 +79,7 @@ public class Reyna extends Personagem {
         jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            for (int i = 0; i < 3; i++) {
-                jogadores[1].getPersonagens().get(i).ficarInvulneravel(1);
-            }
+            jogadores[0].getPersonagens().get(idPersonagemAlvo).ficarInvulneravel(1);
         }
 
         else if (idHabilidade == 1) {
