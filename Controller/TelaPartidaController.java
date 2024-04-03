@@ -28,6 +28,16 @@ public class TelaPartidaController {
             Habilidade0Pers2, Habilidade1Pers2, Habilidade2Pers2, Habilidade3Pers2,
             Habilidade0Pers3, Habilidade1Pers3, Habilidade2Pers3, Habilidade3Pers3;
     @FXML
+    private ImageView HabilidadePendente1, HabilidadePendente2, HabilidadePendente3;
+    @FXML
+    private ImageView HabilidadeAtiva1Pers1Jog1, HabilidadeAtiva1Pers2Jog1, HabilidadeAtiva1Pers3Jog1,
+            HabilidadeAtiva2Pers1Jog1, HabilidadeAtiva2Pers2Jog1, HabilidadeAtiva2Pers3Jog1,
+            HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1;
+    @FXML
+    private ImageView HabilidadeAtiva1Pers1Jog2, HabilidadeAtiva1Pers2Jog2, HabilidadeAtiva1Pers3Jog2,
+            HabilidadeAtiva2Pers1Jog2, HabilidadeAtiva2Pers2Jog2, HabilidadeAtiva2Pers3Jog2,
+            HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2;
+    @FXML
     private Text Countdown0Pers1, Countdown1Pers1, Countdown2Pers1, Countdown3Pers1,
             Countdown0Pers2, Countdown1Pers2, Countdown2Pers2, Countdown3Pers2,
             Countdown0Pers3, Countdown1Pers3, Countdown2Pers3, Countdown3Pers3;
@@ -36,16 +46,13 @@ public class TelaPartidaController {
     private Pane BarraInferior, QuadradoEnergiaHabilidadeClicada;
     boolean controladorBarraInferior = false;
     boolean[][] alvosDisponiveis;
-    int indexPersonagem;
-    int indexHabilidade;
+    int idPersonagemAtacante;
+    int idHabilidade;
 
     @FXML
     private Text NomeHabilidadeClicada, EnergiaHabilidadeClicada;
 
-
-
-
-
+    private HabilidadePendente[] habilidadesPendentes = new HabilidadePendente[3];
 
     public void initialize() {
         Personagem[] timeA = {
@@ -99,18 +106,30 @@ public class TelaPartidaController {
                 {Habilidade0Pers2, Habilidade1Pers2, Habilidade2Pers2, Habilidade3Pers2},
                 {Habilidade0Pers3, Habilidade1Pers3, Habilidade2Pers3, Habilidade3Pers3}
         };
+        ImageView[] imgsHabilidadesPendentes = {
+                HabilidadePendente1, HabilidadePendente2, HabilidadePendente3
+        };
+
         Text[][] countdowns = {
                 {Countdown0Pers1, Countdown1Pers1, Countdown2Pers1, Countdown3Pers1},
                 {Countdown0Pers2, Countdown1Pers2, Countdown2Pers2, Countdown3Pers2},
                 {Countdown0Pers3, Countdown1Pers3, Countdown2Pers3, Countdown3Pers3}
         };
         Image[][] imgHabilidades = new Image[3][4];
+        Image[] imgHabilidadesPendentes = new Image[3];
         for (int i = 0; i < 3; i++) {
             boolean personagemMorto = Dados.partida.getJogadores()[0].getPersonagens().get(i).getVida() == 0; // verifica se o personagem está morto
             boolean stunned = Dados.partida.getJogadores()[0].getPersonagens().get(i).getStunned() > 0; // verifica se o personagem está stunnado
             for (int j = 0; j < 4; j++) {
                 imgHabilidades[i][j] = new Image("view/Imagens/Personagens/"+timeA[i].getNome()+j+".png"); // obtem a imagem da skill
-                imgsHabilidades[i][j].setImage(imgHabilidades[i][j]); // define a imagem da skill
+
+                if (habilidadesPendentes[i] != null && habilidadesPendentes[i].getIdHabilidade() == j) {
+                    imgHabilidades[i][j] = new Image("view/Imagens/Personagens/White.png");
+                    imgHabilidadesPendentes[i] = new Image("view/Imagens/Personagens/"+timeA[i].getNome()+j+".png");
+                }
+
+                imgsHabilidades[i][j].setImage(imgHabilidades[i][j]);
+                imgsHabilidadesPendentes[i].setImage(imgHabilidadesPendentes[i]);
 
                 boolean countdown = Dados.partida.getJogadores()[0].getPersonagens().get(i).getHabilidades()[j].getCountdownAtual() > 0;
                 if (countdown && !personagemMorto) { // caso o personagem esteja em countdown, exibe
@@ -208,6 +227,65 @@ public class TelaPartidaController {
             }
         }
 
+
+
+        // imagens das habilidades ativas
+        ImageView[][] habilidadesAtivasJogadorA = {
+                {HabilidadeAtiva1Pers1Jog1, HabilidadeAtiva1Pers2Jog1, HabilidadeAtiva1Pers3Jog1},
+                {HabilidadeAtiva2Pers1Jog1, HabilidadeAtiva2Pers2Jog1, HabilidadeAtiva2Pers3Jog1},
+                {HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1}
+        };
+
+        ImageView[][] habilidadesAtivasJogadorB = {
+                {HabilidadeAtiva1Pers1Jog2, HabilidadeAtiva1Pers2Jog2, HabilidadeAtiva1Pers3Jog2},
+                {HabilidadeAtiva2Pers1Jog2, HabilidadeAtiva2Pers2Jog2, HabilidadeAtiva2Pers3Jog2},
+                {HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2}
+        };
+
+
+        Jogador jogadorAtacante = Dados.partida.getJogadorAtacante();
+        Jogador jogadorDefensor = Dados.partida.getJogadorDefensor();
+
+        for (int i = 0; i < 3; i++) {
+            String[] str = {"Escudo", "Stun", "Invulneravel"};
+
+            Personagem personagemAtual = jogadorAtacante.getPersonagens().get(i);
+            int controlador = 0;
+            boolean[] ativadores = {
+                    personagemAtual.getDefesa() > 0,
+                    personagemAtual.getStunned() > 0,
+                    personagemAtual.getInvulneravel() > 0
+            };
+
+            personagemAtual = jogadorDefensor.getPersonagens().get(i);
+            int controladorJogB = 0;
+            boolean[] ativadoresJogadorB = {
+                personagemAtual.getDefesa() > 0,
+                personagemAtual.getStunned() > 0,
+                personagemAtual.getInvulneravel() > 0
+            };
+
+            for (int j = 0; j < str.length; j++) {
+                habilidadesAtivasJogadorA[j][i].setImage(null);
+                if (ativadores[j]) {
+                    habilidadesAtivasJogadorA[controlador][i].setImage(new Image("view/Imagens/"+str[j]+".png"));
+                    controlador++;
+                }
+
+                habilidadesAtivasJogadorB[j][i].setImage(null);
+                if (ativadoresJogadorB[j]) {
+                    habilidadesAtivasJogadorB[controladorJogB][i].setImage(new Image("view/Imagens/"+str[j]+".png"));
+                    controladorJogB++;
+                }
+            }
+
+
+
+        }
+
+
+
+        // ajusta a tonalidade dos alvos disponíveis
         if (alvosDisponiveis != null) {
             for (int i = 0; i < alvosDisponiveis.length; i++) {
                 for (int j = 0; j < alvosDisponiveis[i].length; j++) {
@@ -220,6 +298,8 @@ public class TelaPartidaController {
                 }
             }
         }
+
+
     }
 
     private void desativarAtivados() {
@@ -274,13 +354,13 @@ public class TelaPartidaController {
                     if (custoHabilidade <= energiaDisponivel) {
                         // obtem em quais personagens é possível usar a habildiade
                         this.alvosDisponiveis = Dados.partida.getJogadores()[0].verificarHabilidade(i, j, Dados.partida.getJogadores()[1].getPersonagens());
-                        this.indexPersonagem = i;
-                        this.indexHabilidade = j;
+                        this.idPersonagemAtacante = i;
+                        this.idHabilidade = j;
                     }
                     else {
                         alvosDisponiveis = null;
-                        this.indexPersonagem = -1;
-                        this.indexHabilidade = -1;
+                        this.idPersonagemAtacante = -1;
+                        this.idHabilidade = -1;
                     }
                 }
             }
@@ -302,33 +382,57 @@ public class TelaPartidaController {
         ImageView imagemClicada = (ImageView) event.getSource();
         String idImagem = imagemClicada.getId();
 
-        int indexJogador = 0;
-        int indexPersonagemAlvo = 0;
+        int idJogadorAlvo = 0;
+        int idPersonagemAlvo = 0;
         for (int i = 1; i <= 6; i++) {
             String code = "Char"+i;
 
             if (idImagem.equals("Char"+i)) {
                 if (i <= 3) {
-                    indexJogador = 0;
-                    indexPersonagemAlvo = i - 1;
+                    idJogadorAlvo = 0;
+                    idPersonagemAlvo = i - 1;
                 }
                 else {
-                    indexJogador = 1;
-                    indexPersonagemAlvo = i - 4;
+                    idJogadorAlvo = 1;
+                    idPersonagemAlvo = i - 4;
                 }
             }
         }
-        if (alvosDisponiveis != null && alvosDisponiveis[indexJogador][indexPersonagemAlvo]) {
-            Jogador atacante = Dados.partida.getJogadores()[0];
-            Jogador alvo = Dados.partida.getJogadores()[indexJogador];
+        if (alvosDisponiveis != null && alvosDisponiveis[idJogadorAlvo][idPersonagemAlvo]) {
+            //Dados.partida.getJogadores()[0].utilizarHabilidade(atacante, alvo, this.indexPersonagem, this.indexHabilidade, indexPersonagemAlvo);
 
-            Dados.partida.getJogadores()[0].utilizarHabilidade(atacante, alvo, this.indexPersonagem, this.indexHabilidade, indexPersonagemAlvo);
+
+            if (habilidadesPendentes[this.idPersonagemAtacante] == null) {
+                habilidadesPendentes[this.idPersonagemAtacante] = new HabilidadePendente(idPersonagemAtacante, idHabilidade, idJogadorAlvo, idPersonagemAlvo);
+            }
         }
 
         initialize();
     }
 
+    public void cliqueHabilidadePendente(MouseEvent event) {
+        ImageView imagemClicada = (ImageView) event.getSource();
+        String idImagem = imagemClicada.getId();
+
+        for (int i = 0; i < 3; i++) {
+            String nm = "HabilidadePendente"+(i+1);
+            if (idImagem.equals(nm) && habilidadesPendentes[i] != null) {
+                habilidadesPendentes[i].liberar();
+                habilidadesPendentes[i] = null;
+            }
+        }
+        initialize();
+    }
+
     public void passarTurno(MouseEvent event) {
+        for (int i = 0; i < 3; i++) {
+            if (habilidadesPendentes[i] != null) {
+                Dados.partida.utilizarHabilidade(habilidadesPendentes[i]);
+
+                habilidadesPendentes[i] = null;
+            }
+        }
+
         Dados.partida.inverterJogadores();
 
         initialize();

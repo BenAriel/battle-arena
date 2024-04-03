@@ -3,6 +3,7 @@
 
 # Ignore arquivos de configuração do Eclipse
 .settings/
+# Ignore arquivos compilados binários e classes
 bin/
 *.class
 
@@ -11,3 +12,12 @@ bin/
 
 # Ignore arquivos JAR no diretório de bibliotecas
 lib/*.jar
+
+# Ignore diretório de informações de META
+META-INF/
+
+# Ignore diretório de saída
+out/
+
+# Ignore arquivo de configuração do IntelliJ
+Lol Arena.iml

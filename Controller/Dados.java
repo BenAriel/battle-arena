@@ -12,16 +12,16 @@ public class Dados {
 
     public static void gerarJogadores() {
         ArrayList<Personagem> timeA = new ArrayList<>();
-        timeA.add(new Garen());
-        timeA.add(new Ivern());
-        timeA.add(new Kennen());
-        jogadorA = new Jogador("Lucas", timeA);
+        timeA.add(new Phoenix());
+        timeA.add(new Reyna());
+        timeA.add(new Sage());
+        jogadorA = new Jogador("Jogador A", timeA);
 
         ArrayList<Personagem> timeB = new ArrayList<>();
-        timeB.add(new Sage());
-        timeB.add(new Viper());
-        timeB.add(new Fade());
-        jogadorB = new Jogador("Ariel", timeB);
+        timeB.add(new Toph());
+        timeB.add(new Phoenix());
+        timeB.add(new Reyna());
+        jogadorB = new Jogador("Jogador B", timeB);
 
         jogadorA.meuTurno();
 
