@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="BarraInferior" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaPartidaController">
    <children>
-      <Pane layoutX="100.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="100.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: red; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char1" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,6 +19,9 @@
                </image>
             </ImageView>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Pane>
       <Pane layoutX="100.0" layoutY="215.0" prefHeight="28.0" prefWidth="130.0" style="-fx-border-color: BLACK; -fx-border-insets: -1;">
          <children>
@@ -30,7 +33,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="100.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="100.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: F9C70C; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char2" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -49,7 +52,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="100.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="100.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: blue; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char3" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,7 +71,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="1130.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char4" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -87,7 +90,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="1130.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char5" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -109,7 +112,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1;">
+      <Pane layoutX="1130.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="Char6" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -137,7 +140,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="648.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: #DEAF0C;">
+      <Pane layoutX="648.0" layoutY="50.0" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-background-color: F9C70C;">
          <children>
             <Text fx:id="EnergiaAmarela" fill="WHITE" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
@@ -423,5 +426,57 @@
             <Image url="@../Imagens/Personagens/X.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers1Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="170.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers2Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="350.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers3Jog1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="530.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers1Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="170.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers2Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="350.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="HabilidadeAtiva4Pers3Jog2" fitHeight="25.0" fitWidth="25.0" layoutX="1265.0" layoutY="530.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/Personagens/X.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="nickJog1" layoutX="100.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nick 1" textAlignment="RIGHT">
+         <font>
+            <Font name="Times New Roman" size="32.0" />
+         </font>
+      </Text>
+      <Text fx:id="nickJog2" layoutX="1130.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nick 2" textAlignment="RIGHT">
+         <font>
+            <Font name="Times New Roman" size="32.0" />
+         </font>
+      </Text>
+      <Text fx:id="winRateJog1" layoutX="100.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(0v0e0d)" textAlignment="RIGHT">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="winRateJog2" layoutX="1130.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(0v0e0d)" textAlignment="RIGHT">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Text>
+
+
    </children>
 </AnchorPane>

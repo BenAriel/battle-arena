@@ -8,10 +8,18 @@ public class Jogador {
     private int[] energias = new int[4];
     private String nick;
     private List<Personagem> personagens;
+    private int[] winDrawLoss = new int[3];
 
     public Jogador(String nick, List<Personagem> personagens) {
         setNick(nick);
         setPersonagens(personagens);
+    }
+
+    public Jogador(String nick, int vitorias, int empates, int derrotas) {
+        this.nick = nick;
+        winDrawLoss[0] = vitorias;
+        winDrawLoss[1] = empates;
+        winDrawLoss[2] = derrotas;
     }
 
     public String getNick() {
@@ -133,6 +141,33 @@ public class Jogador {
         getPersonagens().get(habilidade.getIdPersonagem()).utilizarHabilidade(habilidade);
     }
 
+    public String getWinRate() {
+        String str = "";
+
+        str += "("+winDrawLoss[0]+"V/"+winDrawLoss[1]+"E/"+winDrawLoss[2]+"D)";
+
+        return str;
+    }
+
+    public int[] getWinDrawLoss() {
+        return winDrawLoss;
+    }
+    public void setWinDrawLoss(int[] winDrawLoss) {
+        this.winDrawLoss = winDrawLoss;
+    }
+
+    public void adicionarVitoria() {
+        winDrawLoss[0]++;
+    }
+
+    public void adicionarEmpate() {
+        winDrawLoss[1]++;
+    }
+
+    public void adicionarDerrota() {
+        winDrawLoss[2]++;
+    }
+
     public void meuTurno() {
         for (int i = 0; i < personagens.size(); i++) {
             personagens.get(i).meuTurno();
@@ -209,18 +244,6 @@ public class Jogador {
 
     public String toString() {
         String str = "";
-
-        str += "===== "+nick+" =====\n";
-
-        str += "Energia Vermelha ("+energias[0]+") | ";
-        str += personagens.get(0)+"\n";
-        
-
-        str += "Energia Amarela ("+energias[1]+") | ";
-        str += personagens.get(1)+"\n";
-        str += "Energia Amarela ("+energias[2]+") | ";
-        str += personagens.get(2)+"\n";
-        str += "Energia Preta ("+energias[3]+")";
 
         return str;
     }

@@ -27,8 +27,8 @@ public class Aang extends Personagem {
         energia = 1;
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
-        nome = "Coragem";
-        descricao = "Garen se inspira, ganhando motivação para continuar na batalha.  \n\t Defesa(50).";
+        nome = "Bola de Terra";
+        descricao = "Aang se protege utilizando a terra.  \n\t Defesa(30).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -38,7 +38,7 @@ public class Aang extends Personagem {
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Dobra de Energia";
-        descricao = "Aang remove completamente os poderes do alvo, o impossibilitando de lutar. \n\t Dano Coletaral(25); Stun(4)";
+        descricao = "Aang remove os poderes do alvo, o impossibilitando de lutar. \n\t Dano Coletaral(25); Stun(4)";
         energia = 4;
         habilidades[3] = new Habilidade(nome, descricao, energia, 2+energia);
 
@@ -51,8 +51,9 @@ public class Aang extends Personagem {
             vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
         else if (idHabilidade == 1) {
+            vivos = bloquearInimigos(vivos);
             vivos = bloquearAliados(vivos);
-            vivos = bloquearInvulneraveis(vivos, invulneraveis);
+            vivos = permitirUsuario(vivos, idPersonagem);
         }
         else if (idHabilidade == 2) {
             vivos = bloquearAliados(vivos);
@@ -63,6 +64,7 @@ public class Aang extends Personagem {
             vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
 
+        setHabilidadesVerificadas(vivos);
         return vivos;
     }
 
@@ -79,17 +81,17 @@ public class Aang extends Personagem {
         jogadores[0].getPersonagens().get(idPersonagem).getHabilidades()[idHabilidade].setCountdownAtual();
 
         if (idHabilidade == 0) {
-            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).danoDireto(20);
+            jogadores[idJogadorAlvo].getPersonagens().get(idPersonagemAlvo).dano(20);
         }
 
         else if (idHabilidade == 1) {
-            jogadores[0].getPersonagens().get(idPersonagem).defender(50);
+            jogadores[0].getPersonagens().get(idPersonagem).defender(30);
         }
 
 
         else if (idHabilidade == 2) {
             for (int i = 0; i < 3; i++) {
-                if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0) {
+                if (getHabilidadesVerificadas()[1][i]) {
                     jogadores[idJogadorAlvo].getPersonagens().get(i).dano(35);
                 }
             }

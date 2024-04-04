@@ -15,6 +15,7 @@ public abstract class Personagem {
     private int stunned;
     private int invulneravel;
     private int defesa;
+    boolean[][] habilidadesVerificadas;
 
     public Personagem(String nome, String descricao, int vida, Habilidade[] habilidades) {
         turno = 0;
@@ -101,6 +102,14 @@ public abstract class Personagem {
     };
 
     public void setTurno(int turno) {this.turno = turno;};
+
+    public void setHabilidadesVerificadas(boolean[][] habilidadesVerificadas) {
+        this.habilidadesVerificadas = habilidadesVerificadas;
+    }
+
+    public boolean[][] getHabilidadesVerificadas() {
+        return habilidadesVerificadas;
+    }
     
     public boolean[][] bloquearAliados(boolean[][] personagens) {
         for (int i = 0; i < personagens[0].length; i++) {

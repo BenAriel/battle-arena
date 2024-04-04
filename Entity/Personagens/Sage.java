@@ -24,13 +24,13 @@ public class Sage extends Personagem {
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe Curativo";
-        descricao = "Sage usa um orbe curativo em um aliado.    \nCura(35).";
+        descricao = "Sage usa um orbe curativo em um aliado.    \nCura(30).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Orbe de Lentidão";
-        descricao = "Sage joga um Orbe de Lentidão nos inimigos.    \nStun(3); Múltiplos Alvos; Chance(66%).";
-        energia = 3;
+        descricao = "Sage joga um Orbe de Lentidão nos inimigos.    \nStun(2); Múltiplos Alvos; Chance(66%).";
+        energia = 2;
         habilidades[2] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Ressurreição";
@@ -44,8 +44,6 @@ public class Sage extends Personagem {
     public boolean[][] verificarHabilidade(boolean[][] vivos, boolean[] invulneraveis, int idPersonagem, int idHabilidade) {
         if (idHabilidade == 0) {
             vivos = bloquearInimigos(vivos);
-            vivos = bloquearAliados(vivos);
-            vivos = permitirUsuario(vivos, idPersonagem);
         }
         else if (idHabilidade == 1) {
             vivos = bloquearInimigos(vivos);
@@ -89,7 +87,7 @@ public class Sage extends Personagem {
         else if (idHabilidade == 2) {
             for (int i = 0; i < 3; i++) {
                 if (jogadores[idJogadorAlvo].getPersonagens().get(i).getVida() > 0 && jogadores[idJogadorAlvo].getPersonagens().get(i).getInvulneravel() == 0 && random.chance(66)) { // se o personagem estiver vivo, executa em 50% dos casos
-                    jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(3);
+                    jogadores[idJogadorAlvo].getPersonagens().get(i).stunnar(2);
                 }
             }
         }

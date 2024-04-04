@@ -16,6 +16,9 @@ import javafx.scene.layout.Pane;
 
 public class TelaPartidaController {
     @FXML
+    private Text nickJog1, nickJog2,
+            winRateJog1, winRateJog2;
+    @FXML
     private ImageView Char1, Char2, Char3, Char4, Char5, Char6;
     @FXML
     private Rectangle Rect1, Rect2, Rect3, Rect4, Rect5, Rect6;
@@ -32,11 +35,13 @@ public class TelaPartidaController {
     @FXML
     private ImageView HabilidadeAtiva1Pers1Jog1, HabilidadeAtiva1Pers2Jog1, HabilidadeAtiva1Pers3Jog1,
             HabilidadeAtiva2Pers1Jog1, HabilidadeAtiva2Pers2Jog1, HabilidadeAtiva2Pers3Jog1,
-            HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1;
+            HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1,
+            HabilidadeAtiva4Pers1Jog1, HabilidadeAtiva4Pers2Jog1, HabilidadeAtiva4Pers3Jog1;
     @FXML
     private ImageView HabilidadeAtiva1Pers1Jog2, HabilidadeAtiva1Pers2Jog2, HabilidadeAtiva1Pers3Jog2,
             HabilidadeAtiva2Pers1Jog2, HabilidadeAtiva2Pers2Jog2, HabilidadeAtiva2Pers3Jog2,
-            HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2;
+            HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2,
+            HabilidadeAtiva4Pers1Jog2, HabilidadeAtiva4Pers2Jog2, HabilidadeAtiva4Pers3Jog2;
     @FXML
     private Text Countdown0Pers1, Countdown1Pers1, Countdown2Pers1, Countdown3Pers1,
             Countdown0Pers2, Countdown1Pers2, Countdown2Pers2, Countdown3Pers2,
@@ -55,6 +60,19 @@ public class TelaPartidaController {
     private HabilidadePendente[] habilidadesPendentes = new HabilidadePendente[3];
 
     public void initialize() {
+        Text[] nomesJogadores = {nickJog1, nickJog2};
+        Text[] winRate = {winRateJog1, winRateJog2};
+
+        Jogador jogA = Dados.partida.getJogadorAtacante();
+        nomesJogadores[0].setText(jogA.getNick());
+        winRate[0].setText(jogA.getWinRate());
+
+
+        Jogador jogB = Dados.partida.getJogadorDefensor();
+        nomesJogadores[1].setText(jogB.getNick());
+        winRate[1].setText(jogB.getWinRate());
+
+
         Personagem[] timeA = {
                 Dados.partida.getJogadores()[0].getPersonagens().get(0),
                 Dados.partida.getJogadores()[0].getPersonagens().get(1),
@@ -233,13 +251,15 @@ public class TelaPartidaController {
         ImageView[][] habilidadesAtivasJogadorA = {
                 {HabilidadeAtiva1Pers1Jog1, HabilidadeAtiva1Pers2Jog1, HabilidadeAtiva1Pers3Jog1},
                 {HabilidadeAtiva2Pers1Jog1, HabilidadeAtiva2Pers2Jog1, HabilidadeAtiva2Pers3Jog1},
-                {HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1}
+                {HabilidadeAtiva3Pers1Jog1, HabilidadeAtiva3Pers2Jog1, HabilidadeAtiva3Pers3Jog1},
+                {HabilidadeAtiva4Pers1Jog1, HabilidadeAtiva4Pers2Jog1, HabilidadeAtiva4Pers3Jog1}
         };
 
         ImageView[][] habilidadesAtivasJogadorB = {
                 {HabilidadeAtiva1Pers1Jog2, HabilidadeAtiva1Pers2Jog2, HabilidadeAtiva1Pers3Jog2},
                 {HabilidadeAtiva2Pers1Jog2, HabilidadeAtiva2Pers2Jog2, HabilidadeAtiva2Pers3Jog2},
-                {HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2}
+                {HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2},
+                {HabilidadeAtiva4Pers1Jog2, HabilidadeAtiva4Pers2Jog2, HabilidadeAtiva4Pers3Jog2}
         };
 
 
@@ -247,14 +267,15 @@ public class TelaPartidaController {
         Jogador jogadorDefensor = Dados.partida.getJogadorDefensor();
 
         for (int i = 0; i < 3; i++) {
-            String[] str = {"Escudo", "Stun", "Invulneravel"};
+            String[] str = {"Escudo", "Stun", "Invulneravel", "Escudo"};
 
             Personagem personagemAtual = jogadorAtacante.getPersonagens().get(i);
             int controlador = 0;
             boolean[] ativadores = {
                     personagemAtual.getDefesa() > 0,
                     personagemAtual.getStunned() > 0,
-                    personagemAtual.getInvulneravel() > 0
+                    personagemAtual.getInvulneravel() > 0,
+                    personagemAtual.getDefesa() > 0
             };
 
             personagemAtual = jogadorDefensor.getPersonagens().get(i);
@@ -262,7 +283,8 @@ public class TelaPartidaController {
             boolean[] ativadoresJogadorB = {
                 personagemAtual.getDefesa() > 0,
                 personagemAtual.getStunned() > 0,
-                personagemAtual.getInvulneravel() > 0
+                personagemAtual.getInvulneravel() > 0,
+                personagemAtual.getDefesa() > 0
             };
 
             for (int j = 0; j < str.length; j++) {
@@ -277,6 +299,7 @@ public class TelaPartidaController {
                     habilidadesAtivasJogadorB[controladorJogB][i].setImage(new Image("view/Imagens/"+str[j]+".png"));
                     controladorJogB++;
                 }
+
             }
 
 
@@ -431,6 +454,16 @@ public class TelaPartidaController {
 
                 habilidadesPendentes[i] = null;
             }
+        }
+
+        boolean mortos = true;
+        for (int i = 0; i < 3; i++) {
+            if (Dados.partida.getJogadorDefensor().getPersonagens().get(i).getVida() > 0) {
+                mortos = false;
+            }
+        }
+        if (mortos) {
+            Dados.fimPartida();
         }
 
         Dados.partida.inverterJogadores();

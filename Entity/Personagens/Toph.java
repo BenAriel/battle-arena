@@ -24,7 +24,7 @@ public class Toph extends Personagem {
         habilidades[0] = new Habilidade(nome, descricao, energia, 2+energia);
 
         nome = "Cabana de Terra";
-        descricao = "Toph cria uma Cabana de Terra, protegendo-se ou protegendo um aliado.    \n\tDefesa(50).";
+        descricao = "Toph cria uma Cabana de Terra, protegendo-se ou protegendo um aliado.    \n\tDefesa(30).";
         energia = 2;
         habilidades[1] = new Habilidade(nome, descricao, energia, 2+energia);
 

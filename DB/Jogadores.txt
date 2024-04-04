@@ -1,0 +1,2 @@
+Lucas 0 0 1
+Ariel 1 0 0
