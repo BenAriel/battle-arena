@@ -2,6 +2,8 @@ package Entity;
 
 import Controller.Dados;
 import java.util.ArrayList;
+import java.util.List;
+
 import Resources.Aleatory;
 
 public abstract class Personagem {
@@ -10,8 +12,8 @@ public abstract class Personagem {
     private String descricao;
     private int vida;
     private Habilidade[] habilidades = new Habilidade[4];
-    private ArrayList<Habilidade> habilidadesAtivas = new ArrayList<>();
-    private ArrayList<Habilidade> habilidadesAtivasInimigo = new ArrayList<>();
+    private List<Habilidade> habilidadesAtivas = new ArrayList<>();
+    private List<Habilidade> habilidadesAtivasInimigo = new ArrayList<>();
     private int stunned;
     private int invulneravel;
     private int defesa;
@@ -57,7 +59,7 @@ public abstract class Personagem {
         this.habilidades = habilidades;
     }
 
-    public ArrayList<Habilidade> getHabilidadesAtivas() {
+    public List<Habilidade> getHabilidadesAtivas() {
         return habilidadesAtivas;
     }
 
@@ -65,7 +67,7 @@ public abstract class Personagem {
         this.habilidadesAtivas = habilidadesAtivas;
     }
 
-    public ArrayList<Habilidade> getHabilidadesAtivasInimigo() {
+    public List<Habilidade> getHabilidadesAtivasInimigo() {
         return habilidadesAtivasInimigo;
     }
 

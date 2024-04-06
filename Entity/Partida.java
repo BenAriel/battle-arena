@@ -3,11 +3,12 @@ package Entity;
 import java.time.Duration;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Partida {
     int jogadorAtual;
     private Jogador [] jogadores = new Jogador[2];
-    private ArrayList<HabilidadePendente> habilidadesPendentes = new ArrayList<>();
+    private List<HabilidadePendente> habilidadesPendentes = new ArrayList<>();
     private int vencedor; //0 para nenhum,1 para jogador 1, 2 para jogador 2
     private Duration tempoPorTurno;
     private int turnos;
@@ -33,7 +34,7 @@ public class Partida {
         this.jogadores = jogadores;
     }
 
-    public ArrayList<HabilidadePendente> getHabilidadesPendentes() {
+    public List<HabilidadePendente> getHabilidadesPendentes() {
         return habilidadesPendentes;
     }
 
