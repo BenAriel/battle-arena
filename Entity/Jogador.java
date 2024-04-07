@@ -5,6 +5,7 @@ import java.util.List;
 import Resources.Aleatory;
 
 public class Jogador {
+    private String[] personagensLiberados;
     private int[] energias = new int[4];
     private String nick;
     private List<Personagem> personagens;
@@ -30,6 +31,14 @@ public class Jogador {
         if(!nick.isEmpty() && nick.length() > 3) {
             this.nick = nick;
         }
+    }
+
+    public String[] getPersonagensLiberados() {
+        return personagensLiberados;
+    }
+
+    public void setPersonagensLiberados(String[] personagensLiberados) {
+        this.personagensLiberados = personagensLiberados;
     }
 
     public List<Personagem> getPersonagens() {

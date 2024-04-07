@@ -19,6 +19,8 @@ public class TelaPartidaController {
     private Text nickJog1, nickJog2,
             winRateJog1, winRateJog2;
     @FXML
+    private Text turno;
+    @FXML
     private ImageView Char1, Char2, Char3, Char4, Char5, Char6;
     @FXML
     private Rectangle Rect1, Rect2, Rect3, Rect4, Rect5, Rect6;
@@ -60,6 +62,8 @@ public class TelaPartidaController {
     private HabilidadePendente[] habilidadesPendentes = new HabilidadePendente[3];
 
     public void initialize() {
+        turno.setText("Turno: "+Dados.partida.getTurno()+"/20");
+
         Text[] nomesJogadores = {nickJog1, nickJog2};
         Text[] winRate = {winRateJog1, winRateJog2};
 
@@ -267,15 +271,14 @@ public class TelaPartidaController {
         Jogador jogadorDefensor = Dados.partida.getJogadorDefensor();
 
         for (int i = 0; i < 3; i++) {
-            String[] str = {"Escudo", "Stun", "Invulneravel", "Escudo"};
+            String[] str = {"Escudo", "Stun", "Invulneravel"};
 
             Personagem personagemAtual = jogadorAtacante.getPersonagens().get(i);
             int controlador = 0;
             boolean[] ativadores = {
                     personagemAtual.getDefesa() > 0,
                     personagemAtual.getStunned() > 0,
-                    personagemAtual.getInvulneravel() > 0,
-                    personagemAtual.getDefesa() > 0
+                    personagemAtual.getInvulneravel() > 0
             };
 
             personagemAtual = jogadorDefensor.getPersonagens().get(i);
@@ -283,8 +286,7 @@ public class TelaPartidaController {
             boolean[] ativadoresJogadorB = {
                 personagemAtual.getDefesa() > 0,
                 personagemAtual.getStunned() > 0,
-                personagemAtual.getInvulneravel() > 0,
-                personagemAtual.getDefesa() > 0
+                personagemAtual.getInvulneravel() > 0
             };
 
             for (int j = 0; j < str.length; j++) {
@@ -305,8 +307,6 @@ public class TelaPartidaController {
 
 
         }
-
-
 
         // ajusta a tonalidade dos alvos disponíveis
         if (alvosDisponiveis != null) {
@@ -463,7 +463,7 @@ public class TelaPartidaController {
             }
         }
         if (mortos) {
-            Dados.fimPartida();
+            Dados.fimPartidaVitoria();
         }
 
         Dados.partida.inverterJogadores();

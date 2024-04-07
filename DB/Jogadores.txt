@@ -1,2 +1,6 @@
-Lucas 0 0 1
-Ariel 1 0 0
+Lucas 1 4 1
+Sage Reyna Phoenix Viper Toph
+Ariel 1 4 2
+Sage Reyna Phoenix Aang
+Artur 1 0 0
+Sage Reyna Phoenix Viper Kennen Ivern

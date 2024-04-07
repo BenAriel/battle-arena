@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaSelecionarPersonagensController">
+   <children>
+      <Pane layoutX="78.0" layoutY="290.0" prefHeight="170.0" prefWidth="1210.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+         <children>
+            <Pane layoutX="14.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem1jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="134.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem2jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="254.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem3jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="374.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem4jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="494.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem5jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="614.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem6jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="734.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem7jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="854.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem8jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="974.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem9jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Text fx:id="nick1" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick 1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children></Pane>
+      <Pane layoutX="78.0" layoutY="480.0" prefHeight="170.0" prefWidth="1210.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+         <children>
+            <Pane layoutX="14.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem1jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="134.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem2jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="254.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem3jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="374.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem4jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="494.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem5jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="614.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem6jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="734.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem7jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="854.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem8jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="974.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem9jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Text fx:id="nick2" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick 2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

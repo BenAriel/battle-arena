@@ -1,10 +1,13 @@
 package Entity;
 
+import Controller.Dados;
+
 import java.time.Duration;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Partida {
+    int turno;
     int jogadorAtual;
     private Jogador [] jogadores = new Jogador[2];
     private ArrayList<HabilidadePendente> habilidadesPendentes = new ArrayList<>();
@@ -19,6 +22,11 @@ public class Partida {
         setTurnos(0);
         setTurnoMaximo(100);
         setVencedor(0);
+        turno = 0;
+    }
+
+    public int getTurno() {
+        return turno;
     }
 
     public int getJogadorAtual() {
@@ -89,6 +97,12 @@ public class Partida {
     }
 
     public void inverterJogadores() {
+        if (turno == 20) {
+            Dados.fimPartidaEmpate();
+        }
+
+        turno++;
+
         jogadores[0].passarTurno();
         jogadores[1].meuTurno();
 
@@ -102,6 +116,7 @@ public class Partida {
         else {
             jogadorAtual = 0;
         }
+
     }
 
     public String toString() {

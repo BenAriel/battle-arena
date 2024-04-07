@@ -12,6 +12,7 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Telas telas = new Telas(primaryStage);
-        Telas.switchScene("/view/ve/TelaPartida.fxml/");
+        Telas.switchScene("/view/ve/TelaSelecionarPersonagens.fxml/");
+        //Telas.switchScene("/view/ve/TelaPartida.fxml/");
     }
 }

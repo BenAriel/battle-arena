@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="BarraInferior" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaPartidaController">
    <children>
-      <Pane layoutX="100.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: red; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="100.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: red; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char1" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +33,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="100.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: F9C70C; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="100.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: F9C70C; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char2" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -52,7 +52,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="100.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: blue; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="100.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: blue; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char3" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -71,7 +71,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="1130.0" layoutY="80.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char4" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -90,7 +90,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="1130.0" layoutY="260.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char5" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -112,7 +112,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="1130.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -1; -fx-border-width: 1;">
+      <Pane layoutX="1130.0" layoutY="440.0" prefHeight="130.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-insets: -2; -fx-border-width: 2;">
          <children>
             <ImageView fx:id="Char6" fitHeight="130.0" fitWidth="130.0" onMouseClicked="#cliquePersonagem" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -474,6 +474,11 @@
       <Text fx:id="winRateJog2" layoutX="1130.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(0v0e0d)" textAlignment="RIGHT">
          <font>
             <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="turno" layoutX="1129.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turno (1/15)">
+         <font>
+            <Font size="24.0" />
          </font>
       </Text>
 
