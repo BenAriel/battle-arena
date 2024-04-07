@@ -3,31 +3,32 @@ package Controller;
 import Entity.*;
 import Entity.Personagens.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Dados {
     public static Jogador jogadorA;
     public static Jogador jogadorB;
     public static Partida partida;
-    static ArrayList<Jogador> statsJogadores = new ArrayList<>();
+    static List<Jogador> statsJogadores = new ArrayList<>();
     static int[] idJogadores;
     static String[] personagensJogadorA;
 
     public static void gerarJogadores() {
         carregarDBJogadores();
 
-        ArrayList<Personagem> timeA = new ArrayList<>();
+        List<Personagem> timeA = new ArrayList<>();
         timeA.add(new Aang());
+        timeA.add(new Ivern());
         timeA.add(new Kennen());
         timeA.add(new Garen());
         jogadorA = new Jogador("Artur", timeA);
 
-        ArrayList<Personagem> timeB = new ArrayList<>();
+        List<Personagem> timeB = new ArrayList<>();
         timeB.add(new Toph());
         timeB.add(new Phoenix());
         timeB.add(new Reyna());

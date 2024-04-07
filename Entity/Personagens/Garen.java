@@ -56,14 +56,13 @@ public class Garen extends Personagem {
         }
         else if (idHabilidade == 3) {
             vivos = bloquearAliados(vivos);
+            vivos = bloquearInvulneraveis(vivos, invulneraveis);
         }
 
         return vivos;
     }
 
     public void utilizarHabilidade(HabilidadePendente habilidade) {
-        Resources.Aleatory<Integer> random = new Resources.Aleatory<>();
-
         int idPersonagem = habilidade.getIdPersonagem();
         int idHabilidade = habilidade.getIdHabilidade();
         int idJogadorAlvo = habilidade.getIdJogadorAlvo();
