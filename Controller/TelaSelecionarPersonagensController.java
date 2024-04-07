@@ -12,15 +12,15 @@ import view.Telas;
 public class TelaSelecionarPersonagensController {
     @FXML
     private ImageView personagem1jog1, personagem2jog1, personagem3jog1, personagem4jog1, personagem5jog1,
-            personagem6jog1, personagem7jog1, personagem8jog1, personagem9jog1;
+            personagem6jog1, personagem7jog1, personagem8jog1, personagem9jog1, personagem10jog1;
     @FXML
     private ImageView personagem1jog2, personagem2jog2, personagem3jog2, personagem4jog2, personagem5jog2,
-            personagem6jog2, personagem7jog2, personagem8jog2, personagem9jog2;
+            personagem6jog2, personagem7jog2, personagem8jog2, personagem9jog2, personagem10jog2;
     @FXML
     private Text nick1, nick2;
 
     String[] todosPersonagens = {
-            "Sage", "Phoenix", "Viper", "Reyna", "Kennen", "Ivern", "Garen", "Toph", "Aang"
+            "Sage", "Phoenix", "Viper", "Reyna", "Kennen", "Ivern", "Garen", "Toph", "Aang", "Beno"
     };
     // obter nome personagens e personagens bloqueados
     String[] personagensJog1 = Dados.jogadorA.getPersonagensLiberados();
@@ -79,7 +79,7 @@ public class TelaSelecionarPersonagensController {
 
         // exibir personagens jogador 1
         ImageView[] imagensJog1 = {personagem1jog1, personagem2jog1, personagem3jog1, personagem4jog1, personagem5jog1,
-                personagem6jog1, personagem7jog1, personagem8jog1, personagem9jog1};
+                personagem6jog1, personagem7jog1, personagem8jog1, personagem9jog1, personagem10jog1};
 
         for (int i = 0; i < personagensJog1.length; i++) {
             if (!selecionadoJog1[i]) { // exibe se não foi selecionado
@@ -100,7 +100,7 @@ public class TelaSelecionarPersonagensController {
 
         // exibir personagens jogador 2
         ImageView[] imagensJog2 = {personagem1jog2, personagem2jog2, personagem3jog2, personagem4jog2, personagem5jog2,
-                personagem6jog2, personagem7jog2, personagem8jog2, personagem9jog2};
+                personagem6jog2, personagem7jog2, personagem8jog2, personagem9jog2, personagem10jog2};
 
         for (int i = 0; i < personagensJog2.length; i++) {
             if (!selecionadoJog2[i]) { // exibe se não foi selecionado

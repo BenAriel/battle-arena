@@ -58,6 +58,11 @@
                   <ImageView fx:id="personagem9jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
+            <Pane layoutX="1094.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem10jog1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
             <Text fx:id="nick1" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick 1">
                <font>
                   <Font size="24.0" />
@@ -109,6 +114,11 @@
             <Pane layoutX="974.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
                <children>
                   <ImageView fx:id="personagem9jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="1094.0" layoutY="53.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="personagem10jog2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selecionarPersonagem" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
             <Text fx:id="nick2" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick 2">

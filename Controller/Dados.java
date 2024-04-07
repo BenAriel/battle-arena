@@ -22,7 +22,7 @@ public class Dados {
         carregarDBJogadores();
 
         List<Personagem> timeA = new ArrayList<>();
-        timeA.add(new Aang());
+        timeA.add(new Beno());
         timeA.add(new Ivern());
         timeA.add(new Kennen());
         timeA.add(new Garen());
@@ -91,6 +91,9 @@ public class Dados {
                 switch (personagens[i][j]) {
                     case "Aang":
                         times[i].add(new Aang());
+                        break;
+                    case "Beno":
+                        times[i].add(new Beno());
                         break;
                     case "Garen":
                         times[i].add(new Garen());

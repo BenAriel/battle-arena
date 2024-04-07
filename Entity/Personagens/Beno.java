@@ -8,7 +8,7 @@ import Entity.Jogador;
 
 public class Beno extends Personagem {
     public Beno() {
-        super("Beno", "La criatura", 150, geradorHabilidades());
+        super("Beno", "La criatura", 100, geradorHabilidades());
     }
 
     private static Habilidade[] geradorHabilidades() {
