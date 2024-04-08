@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="rank" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaInicialController">
+   <children>
+      <ImageView fx:id="imagem" fitHeight="50.0" fitWidth="350.0" layoutX="545.0" layoutY="423.0" onMouseClicked="#iniciarPartida" pickOnBounds="true" preserveRatio="true" />
+      <Pane layoutX="470.0" layoutY="207.0" prefHeight="44.0" prefWidth="501.0">
+         <children>
+            <Pane layoutX="70.0" layoutY="2.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: black;">
+               <children>
+                  <Text fx:id="nomeJogador1" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucas">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="381.0" layoutY="2.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black;">
+               <children>
+                  <Text fx:id="statsJogador1" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10V/10E/10D">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutY="2.0" prefHeight="40.0" prefWidth="57.0" style="-fx-background-color: white; -fx-border-color: black;">
+               <children>
+                  <Text fx:id="posJogador1" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1º">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="470.0" layoutY="260.0" prefHeight="44.0" prefWidth="501.0">
+         <children>
+            <Pane layoutX="70.0" layoutY="2.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="nomeJogador2" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucas">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="381.0" layoutY="2.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="statsJogador2" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10V/10E/10D">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutY="2.0" prefHeight="40.0" prefWidth="57.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="posJogador2" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2º">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="470.0" layoutY="311.0" prefHeight="44.0" prefWidth="501.0">
+         <children>
+            <Pane layoutX="70.0" layoutY="2.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="nomeJogador3" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucas">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="381.0" layoutY="2.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="statsJogador3" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10V/10E/10D">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutY="2.0" prefHeight="40.0" prefWidth="57.0" style="-fx-background-color: white; -fx-border-color: grey;">
+               <children>
+                  <Text fx:id="posJogador3" layoutX="20.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3º">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <ImageView fx:id="ordenar2" fitHeight="22.0" fitWidth="148.0" layoutX="646.0" layoutY="363.0" onMouseClicked="#ordenar" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ordenar1" fitHeight="22.0" fitWidth="148.0" layoutX="478.0" layoutY="363.0" onMouseClicked="#ordenar" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ordenar3" fitHeight="22.0" fitWidth="148.0" layoutX="814.0" layoutY="363.0" onMouseClicked="#ordenar" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

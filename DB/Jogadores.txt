@@ -1,6 +1,18 @@
-Lucas 1 4 1
-Sage Reyna Phoenix Viper Toph
-Ariel 1 4 3
-Sage Reyna Phoenix Aang
-Artur 2 0 0
-Sage Reyna Phoenix Viper Kennen Ivern
+Sofia 7 2 1
+Sage Reyna Phoenix Viper
+Matheus 1 4 0
+Sage Reyna Phoenix Viper
+Pedro 2 3 0
+Sage Reyna Phoenix Viper
+Fernanda 0 6 0
+Sage Reyna Phoenix Viper
+Gabriel 4 1 2
+Sage Reyna Phoenix Viper
+Ana 6 0 3
+Sage Reyna Phoenix Viper
+Larissa 3 2 1
+Sage Reyna Phoenix Viper
+Lucas 5 0 2
+Sage Reyna Phoenix Viper
+Marcos 2 2 3
+Sage Reyna Phoenix Viper

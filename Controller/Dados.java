@@ -2,6 +2,8 @@ package Controller;
 
 import Entity.*;
 import Entity.Personagens.*;
+import view.Telas;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
@@ -16,29 +18,27 @@ public class Dados {
     public static Partida partida;
     static List<Jogador> statsJogadores = new ArrayList<>();
     static int[] idJogadores;
-    static String[] personagensJogadorA;
 
-    public static void gerarJogadores() {
+    public static void gerarJogadores(String nomeJogador1, String nomeJogador2) {
+        statsJogadores = new ArrayList<>();
         carregarDBJogadores();
 
         List<Personagem> timeA = new ArrayList<>();
-        timeA.add(new Beno());
         timeA.add(new Ivern());
         timeA.add(new Kennen());
         timeA.add(new Garen());
-        jogadorA = new Jogador("Artur", timeA);
+        jogadorA = new Jogador(nomeJogador1, timeA);
 
         List<Personagem> timeB = new ArrayList<>();
         timeB.add(new Toph());
         timeB.add(new Phoenix());
         timeB.add(new Reyna());
-        jogadorB = new Jogador("Ariel", timeB);
+        jogadorB = new Jogador(nomeJogador2, timeB);
 
         boolean[] novoJogador = {true, true};
         idJogadores = new int[]{-1, -1};
         for (int i = 0; i < statsJogadores.size(); i++) {
             if (statsJogadores.get(i).getNick().equals(jogadorA.getNick())) {
-                jogadorA.setWinDrawLoss(statsJogadores.get(i).getWinDrawLoss());
                 jogadorA.setPersonagensLiberados(statsJogadores.get(i).getPersonagensLiberados());
                 novoJogador[0] = false;
                 idJogadores[0] = i;
@@ -57,9 +57,9 @@ public class Dados {
             String[] str = {"Sage", "Reyna", "Phoenix", "Viper"};
             jogadorA.setPersonagensLiberados(str);
 
-            statsJogadores.add(jogadorA);
-
-            System.out.println("DADOS: GERAR PERSONAGENS NOVOS!");
+            if (!nomeJogador1.equals("a")) {
+                statsJogadores.add(jogadorA);
+            }
         }
         if (novoJogador[1]) {
             idJogadores[1] = statsJogadores.size();
@@ -67,18 +67,18 @@ public class Dados {
             String[] str = {"Sage", "Reyna", "Phoenix", "Viper"};
             jogadorB.setPersonagensLiberados(str);
 
-            statsJogadores.add(jogadorB);
-
-            System.out.println("DADOS: GERAR PERSONAGENS NOVOS!");
+            if (!nomeJogador2.equals("a")) {
+                statsJogadores.add(jogadorB);
+            }
         }
-
-
 
         jogadorA.meuTurno();
 
         Jogador[] jogadores = {jogadorA, jogadorB};
 
         partida = new Partida(jogadores);
+
+        escreverDBJogadores();
     }
 
     public static void novosPersonagens(String[][] personagens) {
@@ -125,6 +125,7 @@ public class Dados {
 
         jogadorA.setPersonagens(times[0]);
         jogadorB.setPersonagens(times[1]);
+        System.out.println(statsJogadores.size());
     }
 
     public static void carregarDBJogadores() {
@@ -157,21 +158,23 @@ public class Dados {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))) {
             for (int i = 0; i < statsJogadores.size(); i++) {
-                int[] winDrawLoss = statsJogadores.get(i).getWinDrawLoss();
+                if (!statsJogadores.get(i).getNick().equals("a")) {
+                    int[] winDrawLoss = statsJogadores.get(i).getWinDrawLoss();
 
-                bw.write(statsJogadores.get(i).getNick()+" ");
-                bw.write(Integer.toString(winDrawLoss[0])+" ");
-                bw.write(Integer.toString(winDrawLoss[1])+" ");
-                bw.write(Integer.toString(winDrawLoss[2])+"\n");
+                    bw.write(statsJogadores.get(i).getNick()+" ");
+                    bw.write(Integer.toString(winDrawLoss[0])+" ");
+                    bw.write(Integer.toString(winDrawLoss[1])+" ");
+                    bw.write(Integer.toString(winDrawLoss[2])+"\n");
 
-                String[] personagensLiberados = statsJogadores.get(i).getPersonagensLiberados();
-                bw.write(personagensLiberados[0]);
-                for (int j = 1; j < personagensLiberados.length; j++) {
-                    bw.write(" "+personagensLiberados[j]);
+                    String[] personagensLiberados = statsJogadores.get(i).getPersonagensLiberados();
+                    bw.write(personagensLiberados[0]);
+                    for (int j = 1; j < personagensLiberados.length; j++) {
+                        bw.write(" "+personagensLiberados[j]);
+                    }
+
+                    if (i < statsJogadores.size() - 1)
+                        bw.write("\n");
                 }
-
-                if (i < statsJogadores.size() - 1)
-                    bw.write("\n");
             }
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
@@ -195,12 +198,16 @@ public class Dados {
         statsJogadores.get(perdedor).adicionarDerrota();
 
         escreverDBJogadores();
+
+        Telas.switchScene("/view/ve/TelaInicial.fxml/");
     }
 
     public static void fimPartidaEmpate() {
-        statsJogadores.get(0).adicionarEmpate();
-        statsJogadores.get(1).adicionarEmpate();
+        statsJogadores.get(idJogadores[0]).adicionarEmpate();
+        statsJogadores.get(idJogadores[1]).adicionarEmpate();
 
         escreverDBJogadores();
+
+        Telas.switchScene("/view/ve/TelaInicial.fxml/");
     }
 }

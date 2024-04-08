@@ -98,7 +98,7 @@ public class Partida {
     }
 
     public void inverterJogadores() {
-        if (turno == 20) {
+        if (turno == 30) {
             Dados.fimPartidaEmpate();
         }
 

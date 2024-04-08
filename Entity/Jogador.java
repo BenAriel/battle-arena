@@ -28,9 +28,7 @@ public class Jogador {
     }
 
     public void setNick(String nick) {
-        if(!nick.isEmpty() && nick.length() > 3) {
-            this.nick = nick;
-        }
+        this.nick = nick;
     }
 
     public String[] getPersonagensLiberados() {

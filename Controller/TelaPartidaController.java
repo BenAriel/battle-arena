@@ -62,7 +62,7 @@ public class TelaPartidaController {
     private HabilidadePendente[] habilidadesPendentes = new HabilidadePendente[3];
 
     public void initialize() {
-        turno.setText("Turno: "+Dados.partida.getTurno()+"/20");
+        turno.setText("Turno: "+Dados.partida.getTurno()+"/30");
 
         Text[] nomesJogadores = {nickJog1, nickJog2};
         Text[] winRate = {winRateJog1, winRateJog2};

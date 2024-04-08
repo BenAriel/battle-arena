@@ -23,14 +23,20 @@ public class TelaSelecionarPersonagensController {
             "Sage", "Phoenix", "Viper", "Reyna", "Kennen", "Ivern", "Garen", "Toph", "Aang", "Beno"
     };
     // obter nome personagens e personagens bloqueados
-    String[] personagensJog1 = Dados.jogadorA.getPersonagensLiberados();
+    String[] personagensJog1 = {
+            "Sage", "Phoenix", "Viper", "Reyna", "Kennen", "Ivern", "Garen", "Toph", "Aang"
+    };
+    //String[] personagensJog1 = Dados.jogadorA.getPersonagensLiberados();
 
     String[] personagensBloqueadosJog1;
 
     boolean[] selecionadoJog1 = new boolean[personagensJog1.length];
     Pilha<Integer> personagensSelecionadosJog1 = new Pilha<>();
 
-    String[] personagensJog2 = Dados.jogadorB.getPersonagensLiberados();
+    String[] personagensJog2 = {
+            "Sage", "Phoenix", "Viper", "Reyna", "Kennen", "Ivern", "Garen", "Toph", "Aang"
+    };
+    //String[] personagensJog2 = Dados.jogadorA.getPersonagensLiberados();
     String[] personagensBloqueadosJog2;
 
     boolean[] selecionadoJog2 = new boolean[personagensJog2.length];
