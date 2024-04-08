@@ -167,11 +167,6 @@
             </Text>
          </children>
       </Pane>
-      <Text layoutX="635.0" layoutY="40.0" onMouseClicked="#passarTurno" strokeType="OUTSIDE" strokeWidth="0.0" text="Passar Turno">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-      </Text>
       <Pane layoutX="250.0" layoutY="110.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-insets: -1;">
          <children>
             <ImageView fx:id="HabilidadePendente1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#cliqueHabilidadePendente" pickOnBounds="true" preserveRatio="true">
@@ -481,6 +476,7 @@
             <Font size="24.0" />
          </font>
       </Text>
+      <ImageView fx:id="botaoPassarTurno" fitHeight="22.0" fitWidth="94.0" layoutX="635.0" layoutY="16.0" onMouseClicked="#passarTurno" pickOnBounds="true" preserveRatio="true" />
 
 
    </children>

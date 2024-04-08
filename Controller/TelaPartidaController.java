@@ -45,6 +45,8 @@ public class TelaPartidaController {
             HabilidadeAtiva3Pers1Jog2, HabilidadeAtiva3Pers2Jog2, HabilidadeAtiva3Pers3Jog2,
             HabilidadeAtiva4Pers1Jog2, HabilidadeAtiva4Pers2Jog2, HabilidadeAtiva4Pers3Jog2;
     @FXML
+    private ImageView botaoPassarTurno;
+    @FXML
     private Text Countdown0Pers1, Countdown1Pers1, Countdown2Pers1, Countdown3Pers1,
             Countdown0Pers2, Countdown1Pers2, Countdown2Pers2, Countdown3Pers2,
             Countdown0Pers3, Countdown1Pers3, Countdown2Pers3, Countdown3Pers3;
@@ -87,6 +89,8 @@ public class TelaPartidaController {
                 Dados.partida.getJogadores()[1].getPersonagens().get(1),
                 Dados.partida.getJogadores()[1].getPersonagens().get(2)
         };
+
+        botaoPassarTurno.setImage(new Image("view/Imagens/BotaoPassarTurno.png"));
 
 
         Image[] img = {

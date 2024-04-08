@@ -23,7 +23,7 @@ public class TelaInicialController {
     Text nomeJogador1, nomeJogador2, nomeJogador3;
     @FXML
     Text statsJogador1, statsJogador2, statsJogador3;
-    String ordem = "Derrota";
+    String ordem = "Vitória";
     String[][] rank = new String[3][3];
 
     public void initialize() {

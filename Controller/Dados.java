@@ -37,15 +37,17 @@ public class Dados {
 
         boolean[] novoJogador = {true, true};
         idJogadores = new int[]{-1, -1};
+        // Busca
         for (int i = 0; i < statsJogadores.size(); i++) {
             if (statsJogadores.get(i).getNick().equals(jogadorA.getNick())) {
                 jogadorA.setPersonagensLiberados(statsJogadores.get(i).getPersonagensLiberados());
+                jogadorA.setWinDrawLoss(statsJogadores.get(i).getWinDrawLoss());
                 novoJogador[0] = false;
                 idJogadores[0] = i;
             }
             else if (statsJogadores.get(i).getNick().equals(jogadorB.getNick())) {
-                jogadorB.setWinDrawLoss(statsJogadores.get(i).getWinDrawLoss());
                 jogadorB.setPersonagensLiberados(statsJogadores.get(i).getPersonagensLiberados());
+                jogadorB.setWinDrawLoss(statsJogadores.get(i).getWinDrawLoss());
                 novoJogador[1] = false;
                 idJogadores[1] = i;
             }
