@@ -84,6 +84,7 @@ public class Dados {
     }
 
     public static void novosPersonagens(String[][] personagens) {
+        @SuppressWarnings("unchecked")
         ArrayList<Personagem>[] times = new ArrayList[2];
         times[0] = new ArrayList<>();
         times[1] = new ArrayList<>();

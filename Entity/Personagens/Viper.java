@@ -5,7 +5,6 @@ import Entity.HabilidadePendente;
 import Entity.Personagem;
 import Entity.Habilidade;
 import Entity.Jogador;
-import Resources.Aleatory;
 
 public class Viper extends Personagem {
     public Viper() {
@@ -62,8 +61,6 @@ public class Viper extends Personagem {
     }
 
     public void utilizarHabilidade(HabilidadePendente habilidade) {
-        Aleatory<Integer> random = new Aleatory<>();
-
         int idPersonagem = habilidade.getIdPersonagem();
         int idHabilidade = habilidade.getIdHabilidade();
         int idJogadorAlvo = habilidade.getIdJogadorAlvo();

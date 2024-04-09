@@ -69,8 +69,6 @@ public class Aang extends Personagem {
     }
 
     public void utilizarHabilidade(HabilidadePendente habilidade) {
-        Resources.Aleatory<Integer> random = new Resources.Aleatory<>();
-
         int idPersonagem = habilidade.getIdPersonagem();
         int idHabilidade = habilidade.getIdHabilidade();
         int idJogadorAlvo = habilidade.getIdJogadorAlvo();

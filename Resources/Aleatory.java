@@ -1,6 +1,5 @@
 package Resources;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Aleatory<T> {

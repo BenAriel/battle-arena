@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javafx.scene.text.Text;
+import Implementacoes.Interfaces.InterfaceFila;
+import Implementacoes.Classes.Fila;
+import Implementacoes.Excecao.Excecao;
 
 
 public class TelaInicialController {
@@ -24,9 +27,11 @@ public class TelaInicialController {
     @FXML
     Text statsJogador1, statsJogador2, statsJogador3;
     String ordem = "Vitória";
-    String[][] rank = new String[3][3];
 
-    public void initialize() {
+    List<InterfaceFila<String>> rank = new ArrayList<>();
+    
+
+    public void initialize() throws Excecao {
         Dados.gerarJogadores("a", "a");
 
         Text[][] textos = {
@@ -40,7 +45,7 @@ public class TelaInicialController {
 
             for (int i = 0; i < textos.length; i++) {
                 for (int j = 0; j < textos[i].length; j++) {
-                    textos[i][j].setText(rank[j][i]);
+                    textos[i][j].setText(rank.get(j).remove());
                 }
             }
 
@@ -59,7 +64,7 @@ public class TelaInicialController {
         ordenar3.setImage(new Image("view/Imagens/BotaoOrdenar3.png"));
     }
 
-    public void ordenar(String ordem) {
+    public void ordenar(String ordem) throws Excecao {
 
         List<Jogador> statsJogadores = Dados.statsJogadores;
         if (ordem.equals("Vitória")) {
@@ -121,12 +126,18 @@ public class TelaInicialController {
             }
         }
 
+        rank = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
+            InterfaceFila<String> fila = new Fila<>();
+
             int[] winDrawRate = statsJogadores.get(i).getWinDrawLoss();
 
-            rank[i][0] = (i+1)+"º";
-            rank[i][1] = statsJogadores.get(i).getNick();
-            rank[i][2] = winDrawRate[0]+"V/"+winDrawRate[1]+"E/"+winDrawRate[2]+"D";
+            fila.add((i+1)+"º");
+            fila.add(statsJogadores.get(i).getNick());
+            fila.add(winDrawRate[0]+"V/"+winDrawRate[1]+"E/"+winDrawRate[2]+"D");
+
+            rank.add(fila);
+
         }
     }
 
@@ -166,7 +177,7 @@ public class TelaInicialController {
 
     }
 
-    public void ordenar(MouseEvent event) {
+    public void ordenar(MouseEvent event) throws Excecao {
         ImageView imagemClicada = (ImageView) event.getSource();
         String idImagem = imagemClicada.getId();
 

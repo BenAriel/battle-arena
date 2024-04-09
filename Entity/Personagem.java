@@ -1,10 +1,7 @@
 package Entity;
 
-import Controller.Dados;
 import java.util.ArrayList;
 import java.util.List;
-
-import Resources.Aleatory;
 
 public abstract class Personagem {
     private int turno;

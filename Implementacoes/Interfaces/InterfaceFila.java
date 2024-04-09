@@ -10,5 +10,6 @@ public interface InterfaceFila <T>{
 	
 	boolean isEmpty() throws Excecao;
     void show() throws Excecao;
+	int getSize();
 	
 }

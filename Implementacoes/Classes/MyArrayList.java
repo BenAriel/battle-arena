@@ -33,6 +33,7 @@ public class MyArrayList<E> implements MyInterface<E>
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("unchecked")
 		Node other = (Node) obj;
 		return data == other.data;
 	}
@@ -362,7 +363,8 @@ public E removeByCriteria(E criterio)
 
     @Override
     public boolean contains(Object o) {
-        E dataTemp = (E) o;
+        @SuppressWarnings("unchecked")
+		E dataTemp = (E) o;
         Node p = head;		
 
 	    while( p != null )
@@ -378,7 +380,8 @@ public E removeByCriteria(E criterio)
 	    return false;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public Iterator iterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
@@ -407,7 +410,8 @@ public E removeByCriteria(E criterio)
 
     @Override
     public boolean add(Object e) {
-       	E dado = (E) e; 
+       	@SuppressWarnings("unchecked")
+		E dado = (E) e; 
             Node novo = new Node(dado);    
     
             // verifica se lista está vazia
@@ -435,7 +439,8 @@ public E removeByCriteria(E criterio)
 	        return false;
 	    }
 
-        E criterio = (E) o;
+        @SuppressWarnings("unchecked")
+		E criterio = (E) o;
 		Node removido = searchNode(criterio); // null: criterio nao existe OU criterio esta no 1o elemento
 		
 		if(removido == null) {
@@ -467,7 +472,7 @@ public E removeByCriteria(E criterio)
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(@SuppressWarnings("rawtypes") Collection c) {
         for (Object e : c) {
             if (!contains(e)) {
                 return false;
@@ -477,7 +482,7 @@ public E removeByCriteria(E criterio)
     }
 
     @Override
-    public boolean addAll(Collection c) {
+    public boolean addAll(@SuppressWarnings("rawtypes") Collection c) {
 		boolean modified = false;
 		for (Object e : c) {
 			while (contains(e)) {
@@ -489,7 +494,7 @@ public E removeByCriteria(E criterio)
 	}
 
     @Override
-    public boolean addAll(int index, Collection c) {
+    public boolean addAll(int index, @SuppressWarnings("rawtypes") Collection c) {
 		boolean modified = false;
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index out of bounds");
@@ -497,6 +502,7 @@ public E removeByCriteria(E criterio)
 		else if(index==0)
 		{
 		for (Object e : c) {
+			@SuppressWarnings("unchecked")
 			E dado = (E) e; 
             addFirst(dado);
 			modified = true;
@@ -507,6 +513,7 @@ public E removeByCriteria(E criterio)
 		else if(index==size)
 		{
 			for (Object e : c) {
+				@SuppressWarnings("unchecked")
 				E dado = (E) e; 
 				addLast(dado);
 				modified = true;
@@ -519,6 +526,7 @@ public E removeByCriteria(E criterio)
 				p = p.next;
 			}
 			for (Object e : c) {
+				@SuppressWarnings("unchecked")
 				E dado = (E) e; 
 				addAfter(dado,p.data);
 				modified = true;
@@ -529,7 +537,7 @@ public E removeByCriteria(E criterio)
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(@SuppressWarnings("rawtypes") Collection c) {
       
             boolean modified = false;
             for (Object e : c) {
@@ -542,7 +550,7 @@ public E removeByCriteria(E criterio)
         }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(@SuppressWarnings("rawtypes") Collection c) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'retainAll'");
     }
@@ -577,6 +585,7 @@ public E removeByCriteria(E criterio)
 
     @Override
     public Object set(int index, Object element) {
+		@SuppressWarnings("unchecked")
 		Node novo = new Node((E) element);
        if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index out of bounds");
@@ -619,7 +628,8 @@ public E removeByCriteria(E criterio)
 		}
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
 public void add(int index, Object element) {
     if (index < 0 || index > size) {
         throw new IndexOutOfBoundsException("Index out of bounds");
@@ -681,7 +691,8 @@ public void add(int index, Object element) {
 			return -1;
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public int lastIndexOf(Object o) {
 		Node p = head;
 		int retorno = -1;
@@ -695,24 +706,28 @@ public void add(int index, Object element) {
 		return -1;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public ListIterator listIterator() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
     }
+		@SuppressWarnings("rawtypes")
 		@Override
 	    public ListIterator listIterator(int index) {
 	        // TODO Auto-generated method stub
 	        throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
 	    }
-                @Override
+                @SuppressWarnings("rawtypes")
+				@Override
         		public List subList(int fromIndex, int toIndex) {
         			// TODO Auto-generated method stub
         			throw new UnsupportedOperationException("Unimplemented method 'subList'");
         		}
 
                 public static void main(String[] args) {
-                    List<String> lista = new MyArrayList<String>();
+                    @SuppressWarnings("unchecked")
+					List<String> lista = new MyArrayList<String>();
                     lista.add("QUERO");
                     lista.add("testar");
                     lista.add("STRING");

@@ -7,15 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import Entity.*;
-import Controller.*;
-
 public class Telas {
     private static Stage stage;
     private static final Image icon = new Image("/view/Imagens/Personagens/Viper.png");
-    private Jogador jogadorA;
-    private Jogador jogadorB;
-
     public Telas(Stage stage) {
         Telas.stage = stage;
         Telas.stage.setTitle("Arena");

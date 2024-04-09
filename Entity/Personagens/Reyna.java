@@ -71,7 +71,6 @@ public class Reyna extends Personagem {
 
         int idPersonagem = habilidade.getIdPersonagem();
         int idHabilidade = habilidade.getIdHabilidade();
-        int idJogadorAlvo = habilidade.getIdJogadorAlvo();
         int idPersonagemAlvo = habilidade.getIdPersonagemAlvo();
 
         Jogador[] jogadores = Dados.partida.getJogadores();

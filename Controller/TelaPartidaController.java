@@ -1,8 +1,6 @@
 package Controller;
 
 import Entity.*;
-import Entity.Personagens.*;
-
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -412,8 +410,6 @@ public class TelaPartidaController {
         int idJogadorAlvo = 0;
         int idPersonagemAlvo = 0;
         for (int i = 1; i <= 6; i++) {
-            String code = "Char"+i;
-
             if (idImagem.equals("Char"+i)) {
                 if (i <= 3) {
                     idJogadorAlvo = 0;
@@ -426,9 +422,6 @@ public class TelaPartidaController {
             }
         }
         if (alvosDisponiveis != null && alvosDisponiveis[idJogadorAlvo][idPersonagemAlvo]) {
-            //Dados.partida.getJogadores()[0].utilizarHabilidade(atacante, alvo, this.indexPersonagem, this.indexHabilidade, indexPersonagemAlvo);
-
-
             if (habilidadesPendentes[this.idPersonagemAtacante] == null) {
                 habilidadesPendentes[this.idPersonagemAtacante] = new HabilidadePendente(idPersonagemAtacante, idHabilidade, idJogadorAlvo, idPersonagemAlvo);
             }
